@@ -1,0 +1,282 @@
+﻿<Window x:Class="FinalDB.Invoice"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalDB"
+        mc:Ignorable="d"
+        Title="BLANKSYS - Invoice" Height="720" Width="1000"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4285F4"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3367D6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DataGridStyle" TargetType="DataGrid">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E8E8E8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowBackground" Value="White"/>
+            <Setter Property="AlternatingRowBackground" Value="#F8F9FA"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#E8E8E8"/>
+            <Setter Property="VerticalGridLinesBrush" Value="#E8E8E8"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E8E8E8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+
+        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E8E8E8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="Height" Value="35"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#F8F9FA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Bar -->
+        <Border Grid.Row="0" Background="White" BorderBrush="#E8E8E8" BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="SULTA" FontSize="20" FontWeight="Bold" Foreground="#333333"/>
+                    <TextBlock Text="NI" FontSize="20" FontWeight="Bold" Foreground="#4285F4"/>
+                    <TextBlock Text=" POS" FontSize="14" Foreground="#6E6E6E" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </StackPanel>
+
+                <!-- Page Title -->
+                <TextBlock Grid.Column="1" Text="INVOICE" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+                <!-- User Info -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,20,0" VerticalAlignment="Center">
+                    <Border Width="32" Height="32" Background="#4285F4" CornerRadius="16">
+                        <TextBlock Text="AR" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <StackPanel Margin="10,0,0,0">
+                        <TextBlock Text="Anas Raheem" FontWeight="SemiBold" FontSize="13"/>
+                        <TextBlock Text="Administrator" FontSize="11" Foreground="#6E6E6E"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1" Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Invoice Header -->
+            <Border Grid.Row="0" Background="White" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left Side -->
+                    <Grid Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Invoice No:" FontWeight="SemiBold" Margin="0,0,10,10"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="INV-2024-001" Style="{StaticResource TextBoxStyle}" IsReadOnly="True" Margin="0,0,20,10"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Date:" FontWeight="SemiBold" Margin="0,0,10,10"/>
+                        <DatePicker Grid.Row="1" Grid.Column="1" SelectedDate="{Binding Path=Today}" Margin="0,0,20,10" Height="35"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Customer:" FontWeight="SemiBold" Margin="0,0,10,0"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" Margin="0,0,20,0">
+                            <ComboBoxItem Content="Walk-in Customer" IsSelected="True"/>
+                            <ComboBoxItem Content="Routine Customer"/>
+                            <ComboBoxItem Content="Bulk Customer"/>
+                        </ComboBox>
+                    </Grid>
+
+                    <!-- Right Side -->
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Payment Method:" FontWeight="SemiBold" Margin="0,0,10,10"/>
+                        <ComboBox Grid.Row="0" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" Margin="0,0,0,10">
+                            <ComboBoxItem Content="Cash" IsSelected="True"/>
+                            <ComboBoxItem Content="Credit Card"/>
+                            <ComboBoxItem Content="Bank Transfer"/>
+                            <ComboBoxItem Content="Mobile Payment"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Sales Person:" FontWeight="SemiBold" Margin="0,0,10,10"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource ComboBoxStyle}" Margin="0,0,0,10">
+                            <ComboBoxItem Content="Anas Raheem" IsSelected="True"/>
+                            <ComboBoxItem Content="Swail Kashar"/>
+                            <ComboBoxItem Content="Muhammad Ibrahim"/>
+                        </ComboBox>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Status:" FontWeight="SemiBold" Margin="0,0,10,0"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1" Style="{StaticResource ComboBoxStyle}">
+                            <ComboBoxItem Content="Paid" IsSelected="True"/>
+                            <ComboBoxItem Content="Pending"/>
+                            <ComboBoxItem Content="Cancelled"/>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+            </Border>
+
+            <!-- Invoice Items -->
+            <Border Grid.Row="1" Background="White" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Text="Invoice Items" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10"/>
+
+                    <!-- DataGrid for Invoice Items -->
+                    <DataGrid Grid.Row="1" Style="{StaticResource DataGridStyle}" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Item Code" Width="*" Binding="{Binding ItemCode}"/>
+                            <DataGridTextColumn Header="Description" Width="2*" Binding="{Binding Description}"/>
+                            <DataGridTextColumn Header="Quantity" Width="*" Binding="{Binding Quantity}"/>
+                            <DataGridTextColumn Header="Unit Price" Width="*" Binding="{Binding UnitPrice}"/>
+                            <DataGridTextColumn Header="Discount" Width="*" Binding="{Binding Discount}"/>
+                            <DataGridTextColumn Header="Tax" Width="*" Binding="{Binding Tax}"/>
+                            <DataGridTextColumn Header="Total" Width="*" Binding="{Binding Total}"/>
+                            <DataGridTemplateColumn Width="Auto">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" Background="Transparent" Foreground="#F44336" BorderThickness="0"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <!-- Add Item Button -->
+                    <Button Grid.Row="2" Style="{StaticResource ButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Margin="5,3,5,3"/>
+                            <TextBlock Text="Add Item "/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </Border>
+
+            <!-- Invoice Total and Actions -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Action Buttons -->
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <Button Style="{StaticResource ButtonStyle}" Background="#6E6E6E" Margin="0,0,10,0">
+                        <TextBlock Text="  Save Draft  "/>
+                    </Button>
+                    <Button Style="{StaticResource ButtonStyle}" Background="#F44336" Margin="0,0,10,0">
+                        <TextBlock Text="  Cancel  "/>
+                    </Button>
+                    <Button Style="{StaticResource ButtonStyle}" Background="#4CAF50" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal" >
+                            <TextBlock Text="  &#xE749;" FontFamily="Segoe MDL2 Assets" Margin="0,0,5,0"/>
+                            <TextBlock Text="Print Invoice  "/>
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource ButtonStyle}" Background="#4285F4">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="  &#xE715;" FontFamily="Segoe MDL2 Assets" Margin="0,0,3,0"/>
+                            <TextBlock Text=" Email Invoice  "/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+
+                <!-- Total Summary -->
+                <Border Grid.Column="1" Background="White" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Subtotal:" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="Rs. 0.00" HorizontalAlignment="Right" Margin="0,0,0,10"/>
+
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Discount:" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="Rs. 0.00" HorizontalAlignment="Right" Margin="0,0,0,10"/>
+
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Tax:" FontWeight="SemiBold" Margin="0,0,0,10"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Text="Rs. 0.00" HorizontalAlignment="Right" Margin="0,0,0,10"/>
+
+                        <Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="#E8E8E8" BorderThickness="0,1,0,0" Margin="0,0,0,10"/>
+
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Total:" FontWeight="Bold" FontSize="16" Foreground="#4285F4"/>
+                        <TextBlock Grid.Row="4" Grid.Column="1" Text="Rs. 0.00" FontWeight="Bold" FontSize="16" HorizontalAlignment="Right" Foreground="#4285F4"/>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
