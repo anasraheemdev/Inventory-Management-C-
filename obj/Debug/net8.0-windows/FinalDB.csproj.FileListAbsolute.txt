@@ -20,3 +20,10 @@ C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\FinalDB.genruntime
 C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\ref\FinalDB.dll
 C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\Invoice.g.cs
 C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\Invoice.baml
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\CategoriesPage.g.cs
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\CategoriesPage.baml
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\FinalDB.sourcelink.json
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\AddProductPage.g.cs
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\LoginPage.g.cs
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\AddProductPage.baml
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\LoginPage.baml

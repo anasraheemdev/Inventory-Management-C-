@@ -88,7 +88,7 @@
 
                 <!-- Menu Items -->
                 <StackPanel Grid.Row="1" Margin="10,20,10,0">
-                    <Button Style="{StaticResource MenuButtonStyle}" Background="#ECF4FF" Foreground="#4285F4">
+                    <Button Style="{StaticResource MenuButtonStyle}" Background="#ECF4FF" Foreground="#4285F4" Click="Button_Click_1">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                             <TextBlock Text="Dashboard" FontWeight="SemiBold"/>
@@ -110,10 +110,10 @@
                     </Button>
 
                     <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9E9E9E" FontSize="12"/>
-                    <Button Style="{StaticResource MenuButtonStyle}">
+                    <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_2">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                            <TextBlock Text="Master Item"/>
+                            <TextBlock Text="Add Item"/>
                         </StackPanel>
                     </Button>
                     <Button Style="{StaticResource MenuButtonStyle}">
@@ -158,7 +158,7 @@
                             <TextBlock Text="Receive"/>
                         </StackPanel>
                     </Button>
-                    <Button Style="{StaticResource MenuButtonStyle}">
+                    <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_3">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                             <TextBlock Text="Issued"/>

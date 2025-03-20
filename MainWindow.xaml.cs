@@ -27,4 +27,25 @@ public partial class MainWindow : Window
         invoice.Show();
         this.Close();
     }
+
+    private void Button_Click_1(object sender, RoutedEventArgs e)
+    {
+        CategoriesPage categoriesPage = new CategoriesPage();
+        categoriesPage.Show();
+        this.Close();
+    }
+
+    private void Button_Click_2(object sender, RoutedEventArgs e)
+    {
+        AddProductPage addProductPage = new AddProductPage();
+        addProductPage.Show();
+        this.Close();
+    }
+
+    private void Button_Click_3(object sender, RoutedEventArgs e)
+    {
+        LoginPage loginPage = new LoginPage();
+        loginPage.Show();
+        this.Close();
+    }
 }
