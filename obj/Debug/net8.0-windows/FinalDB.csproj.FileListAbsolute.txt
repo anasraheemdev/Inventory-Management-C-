@@ -27,3 +27,7 @@ C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\AddProductPage.g.c
 C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\LoginPage.g.cs
 C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\AddProductPage.baml
 C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\LoginPage.baml
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\AddCashier.g.cs
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\ProductsPage.g.cs
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\AddCashier.baml
+C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\ProductsPage.baml

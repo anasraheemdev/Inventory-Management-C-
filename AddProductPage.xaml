@@ -160,6 +160,12 @@
                     </Button>
 
                     <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9E9E9E" FontSize="12"/>
+                    <Button Style="{StaticResource MenuButtonStyle}" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                            <TextBlock Text="Cashiers" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Button>
                     <Button Style="{StaticResource MenuButtonStyle}" Background="#ECF4FF" Foreground="#4285F4">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>

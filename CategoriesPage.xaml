@@ -115,6 +115,12 @@
                             <TextBlock Text="Master Item"/>
                         </StackPanel>
                     </Button>
+                    <Button Style="{StaticResource MenuButtonStyle}" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                            <TextBlock Text="Cashiers" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Button>
                     <Button Style="{StaticResource MenuButtonStyle}" Background="#ECF4FF" Foreground="#4285F4">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>

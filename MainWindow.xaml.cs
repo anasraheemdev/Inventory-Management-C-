@@ -48,4 +48,11 @@ public partial class MainWindow : Window
         loginPage.Show();
         this.Close();
     }
+
+    private void Button_Click_4(object sender, RoutedEventArgs e)
+    {
+        AddCashier addCashier = new AddCashier();
+        addCashier.Show();
+        this.Close();
+    }
 }

@@ -69,8 +69,11 @@
         <!-- Left Panel - Brand Showcase -->
         <Grid Grid.Column="0" Background="#F8F9FA">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="565">
-                <TextBlock Text="SULTA" FontSize="44" FontWeight="Bold" Foreground="#333333" HorizontalAlignment="Center"/>
-                <TextBlock Text="NI" FontSize="44" FontWeight="Bold" Foreground="#4285F4" HorizontalAlignment="Center"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0" Width="184">
+                    <TextBlock Text="SULTA" FontSize="40" FontWeight="Bold" Foreground="#333333"/>
+                    <TextBlock Text="NI" FontSize="40" FontWeight="Bold" Foreground="#4285F4"/>
+                    
+                </StackPanel>
                 <TextBlock Text="POINT OF SALE SYSTEM" FontSize="16" Foreground="#6E6E6E" HorizontalAlignment="Center" Margin="0,5,0,30"/>
 
                 <!-- Decorative Icon -->

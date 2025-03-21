@@ -134,6 +134,12 @@
                             <TextBlock Text="Units"/>
                         </StackPanel>
                     </Button>
+                    <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_4" >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                            <TextBlock Text="Cashiers" FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Button>
                     <Button Style="{StaticResource MenuButtonStyle}">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="&#xE8CB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
