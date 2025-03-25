@@ -1,0 +1,282 @@
+﻿<Window x:Class="FinalDB.PurchaseRecordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinalDB"
+        mc:Ignorable="d"
+        Title="SULTANI POS - Purchase Record" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- Reuse the styles from the main window -->
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="15,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3672CF"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="RowHeight" Value="40"/>
+            <Setter Property="AlternationCount" Value="2"/>
+            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+        </Style>
+
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E5AAF"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="15,8"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="6" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center" 
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3672CF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Sidebar (Reusing from main window) -->
+        <Border Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Logo -->
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
+                    <TextBlock Text="SULTA" FontSize="22" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="NI" FontSize="22" FontWeight="Bold" Foreground="#3CEFFF"/>
+                    <TextBlock Text=" POS" FontSize="16" Foreground="#9DC3F5" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                </StackPanel>
+
+                <!-- Sidebar Menu (Similar to main window) -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Style="{DynamicResource ScrollViewerStyle}">
+                    <StackPanel Margin="10,20,10,0">
+                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF" Click="Button_Click_1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Dashboard" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock Text="CASHIER" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Make Invoice"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8FA;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Transaction"/>
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_2">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Add Item"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Category"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Brand"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8EF;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Units"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_4">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Cashiers"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8CB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Master Price"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Purchase Order"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Supplier"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Receive"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_3">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Issued"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Margin="0,20,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE779;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="User Manager"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
+
+
+                <!-- User Info Section -->
+                <Border Grid.Row="2" Background="#174B92" BorderBrush="#144283" BorderThickness="0,1,0,0" Padding="15,12">
+                    <StackPanel Orientation="Horizontal">
+                        <Border Width="36" Height="36" Background="#3CEFFF" CornerRadius="18">
+                            <TextBlock Text="AR" Foreground="#0A2D5E" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+                        </Border>
+                        <StackPanel Margin="10,0,0,0">
+                            <TextBlock Text="Anas Raheem" FontWeight="SemiBold" FontSize="14" Foreground="White"/>
+                            <TextBlock Text="Administrator" FontSize="11" Foreground="#9DC3F5"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- Main Content Area -->
+        <Grid Grid.Column="1" Background="#F6F9FC">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!-- Top Bar -->
+            <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="PURCHASE RECORD" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0" Foreground="#1E5AAF"/>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,25,0">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="New Purchase" Height="40"/>
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Export" Height="40"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!-- Purchase Record Content -->
+            <Grid Grid.Row="1" Margin="25,15,25,25">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Filters -->
+                <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18" Margin="0,0,0,15">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="0,0,15,0">
+                            <TextBlock Text="From Date" Margin="0,0,0,5" Foreground="#6E6E6E"/>
+                            <DatePicker Width="150"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,15,0">
+                            <TextBlock Text="To Date" Margin="0,0,0,5" Foreground="#6E6E6E"/>
+                            <DatePicker Width="150"/>
+                        </StackPanel>
+                        <StackPanel Margin="0,0,15,0">
+                            <TextBlock Text="Supplier" Margin="0,0,0,5" Foreground="#6E6E6E"/>
+                            <ComboBox Width="200"/>
+                        </StackPanel>
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Apply Filter" VerticalAlignment="Bottom" Height="31"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Purchase Record DataGrid -->
+                <Border Grid.Row="1" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18">
+                    <DataGrid Style="{StaticResource DataGridStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Purchase ID" Width="*"/>
+                            <DataGridTextColumn Header="Date" Width="*"/>
+                            <DataGridTextColumn Header="Supplier" Width="*"/>
+                            <DataGridTextColumn Header="Total Amount" Width="*"/>
+                            <DataGridTextColumn Header="Status" Width="*"/>
+                            <DataGridTemplateColumn Header="Actions" Width="*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Button Content="View" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,5,0"/>
+                                            <Button Content="Edit" Style="{StaticResource PrimaryButtonStyle}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
