@@ -26,5 +26,8 @@
     <Compile Update="StockTrackingWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="test.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

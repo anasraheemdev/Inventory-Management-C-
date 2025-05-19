@@ -55,4 +55,6 @@ public partial class MainWindow : Window
         addCashier.Show();
         this.Close();
     }
+
+   
 }

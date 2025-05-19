@@ -1,53 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\",
+  "WorkspaceRootPath": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\addcashier.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:addcashier.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\addproductpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:addproductpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\purchaserecordwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:purchaserecordwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\stocktrackingwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:stocktrackingwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\productspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:productspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\invoice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:invoice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\categoriespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\categoriespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:categoriespage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db\\finaldb\\categoriespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\purchaserecordwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:purchaserecordwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\stocktrackingwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:stocktrackingwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\addproductpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:addproductpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:loginpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\addcashier.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:addcashier.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\invoice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:invoice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\productspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:productspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\categoriespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:categoriespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -58,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,35 +66,36 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "StockTrackingWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\StockTrackingWindow.xaml",
-              "RelativeDocumentMoniker": "StockTrackingWindow.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\StockTrackingWindow.xaml",
-              "RelativeToolTip": "StockTrackingWindow.xaml",
+              "DocumentIndex": 0,
+              "Title": "CategoriesPage.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\CategoriesPage.xaml",
+              "RelativeDocumentMoniker": "CategoriesPage.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\CategoriesPage.xaml",
+              "RelativeToolTip": "CategoriesPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T00:49:03.584Z",
+              "WhenOpened": "2025-05-19T12:48:08.625Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PurchaseRecordWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\PurchaseRecordWindow.xaml",
-              "RelativeDocumentMoniker": "PurchaseRecordWindow.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\PurchaseRecordWindow.xaml",
-              "RelativeToolTip": "PurchaseRecordWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-25T00:43:01.114Z",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAywCAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T12:47:44.337Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-03-19T08:06:09.713Z",
@@ -106,11 +103,35 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "PurchaseRecordWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\PurchaseRecordWindow.xaml",
+              "RelativeDocumentMoniker": "PurchaseRecordWindow.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\PurchaseRecordWindow.xaml",
+              "RelativeToolTip": "PurchaseRecordWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-25T00:43:01.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StockTrackingWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\StockTrackingWindow.xaml",
+              "RelativeDocumentMoniker": "StockTrackingWindow.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\StockTrackingWindow.xaml",
+              "RelativeToolTip": "StockTrackingWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-25T00:49:03.584Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "AddProductPage.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\AddProductPage.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddProductPage.xaml",
               "RelativeDocumentMoniker": "AddProductPage.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\AddProductPage.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddProductPage.xaml",
               "RelativeToolTip": "AddProductPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-03-20T04:12:14.886Z",
@@ -118,11 +139,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "AddCashier.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\AddCashier.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddCashier.xaml",
               "RelativeDocumentMoniker": "AddCashier.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\AddCashier.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddCashier.xaml",
               "RelativeToolTip": "AddCashier.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-03-21T00:57:14.977Z",
@@ -130,11 +151,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "LoginPage.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\LoginPage.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\LoginPage.xaml",
               "RelativeDocumentMoniker": "LoginPage.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\LoginPage.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\LoginPage.xaml",
               "RelativeToolTip": "LoginPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-03-20T04:05:38.183Z",
@@ -142,70 +163,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 9,
               "Title": "ProductsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\ProductsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ProductsPage.xaml",
               "RelativeDocumentMoniker": "ProductsPage.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\ProductsPage.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ProductsPage.xaml",
               "RelativeToolTip": "ProductsPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-21T00:56:28.031Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAMwDYAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T08:06:06.651Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "LoginPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\LoginPage.xaml.cs",
-              "RelativeDocumentMoniker": "LoginPage.xaml.cs",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\LoginPage.xaml.cs",
-              "RelativeToolTip": "LoginPage.xaml.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAQwB4AAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-20T04:17:01.015Z"
+              "WhenOpened": "2025-03-21T00:56:28.031Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "CategoriesPage.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\CategoriesPage.xaml",
-              "RelativeDocumentMoniker": "CategoriesPage.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\CategoriesPage.xaml",
-              "RelativeToolTip": "CategoriesPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-20T02:16:38.92Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "Invoice.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\Invoice.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\Invoice.xaml",
               "RelativeDocumentMoniker": "Invoice.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\Invoice.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\Invoice.xaml",
               "RelativeToolTip": "Invoice.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-03-19T09:56:00.279Z"
+              "WhenOpened": "2025-03-19T09:56:00.279Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 10,
               "Title": "CategoriesPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\CategoriesPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\CategoriesPage.xaml.cs",
               "RelativeDocumentMoniker": "CategoriesPage.xaml.cs",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB\\FinalDB\\CategoriesPage.xaml.cs",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\CategoriesPage.xaml.cs",
               "RelativeToolTip": "CategoriesPage.xaml.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAAACUAAAAZAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAEBUwCUAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-20T04:17:44.35Z"
             }

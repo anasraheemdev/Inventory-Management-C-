@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalDB"
         mc:Ignorable="d"
-        Title="SULTANI - Add New Product" Height="720" Width="1280"
+        Title="SULTANI POS - Add New Product" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+        <!-- Common styles aligned with the reference theme -->
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="#6E6E6E"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Height" Value="40"/>
             <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -19,7 +20,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -27,90 +28,100 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#F2F2F2"/>
-                    <Setter Property="Foreground" Value="#333333"/>
+                    <Setter Property="Background" Value="#3672CF"/>
+                    <Setter Property="Foreground" Value="White"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="ActionButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#4285F4"/>
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E5AAF"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="15,8"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0,0,10,0"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="6" 
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center" 
+                                              Margin="{TemplateBinding Padding}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#3367D6"/>
+                    <Setter Property="Background" Value="#3672CF"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="SecondaryButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="Transparent"/>
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
+            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="Foreground" Value="#1A1A1A"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D0D0D0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CardBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FormControlStyle" TargetType="Control">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <Style x:Key="FormLabelStyle" TargetType="TextBlock">
             <Setter Property="Foreground" Value="#6E6E6E"/>
-            <Setter Property="BorderBrush" Value="#E8E8E8"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+
+        <Style x:Key="InputBoxStyle" TargetType="TextBox">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Height" Value="32"/>
+        </Style>
+
+        <Style x:Key="FormBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="15,8"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="Height" Value="40"/>
-            <Setter Property="Template">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Padding" Value="18"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Effect">
                 <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#F2F2F2"/>
-                    <Setter Property="Foreground" Value="#333333"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
 
-        <Style x:Key="InputLabelStyle" TargetType="TextBlock">
-            <Setter Property="Margin" Value="0,0,0,5"/>
-            <Setter Property="FontSize" Value="13"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-        </Style>
-
-        <Style x:Key="InputFieldStyle" TargetType="Border">
-            <Setter Property="Background" Value="#F8F9FA"/>
-            <Setter Property="BorderBrush" Value="#E8E8E8"/>
+        <Style x:Key="FieldBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="CornerRadius" Value="6"/>
             <Setter Property="Padding" Value="10,0"/>
-            <Setter Property="Height" Value="40"/>
+            <Setter Property="Height" Value="32"/>
             <Setter Property="Margin" Value="0,0,0,15"/>
-        </Style>
-
-        <Style x:Key="InputTextBoxStyle" TargetType="TextBox">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="5,0"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-
-        <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="5,0"/>
-            <Setter Property="FontSize" Value="14"/>
         </Style>
     </Window.Resources>
 
@@ -121,7 +132,7 @@
         </Grid.ColumnDefinitions>
 
         <!-- Left Sidebar -->
-        <Border Background="#F8F9FA" BorderBrush="#E8E8E8" BorderThickness="0,0,1,0">
+        <Border Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
@@ -131,96 +142,154 @@
 
                 <!-- Logo -->
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
-                    <TextBlock Text="SULTA" FontSize="20" FontWeight="Bold" Foreground="#333333"/>
-                    <TextBlock Text="NI" FontSize="20" FontWeight="Bold" Foreground="#4285F4"/>
-                    <TextBlock Text=" POS" FontSize="14" Foreground="#6E6E6E" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                    <TextBlock Text="SULTA" FontSize="22" FontWeight="Bold" Foreground="White"/>
+                    <TextBlock Text="NI" FontSize="22" FontWeight="Bold" Foreground="#3CEFFF"/>
+                    <TextBlock Text=" POS" FontSize="16" Foreground="#9DC3F5" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
                 </StackPanel>
 
-                <!-- Menu Items -->
-                <StackPanel Grid.Row="1" Margin="10,20,10,0">
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                            <TextBlock Text="Dashboard"/>
-                        </StackPanel>
-                    </Button>
+                <!-- Sidebar Menu -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="10,20,10,0">
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Dashboard"/>
+                            </StackPanel>
+                        </Button>
 
-                    <TextBlock Text="CASHIER" Margin="15,20,0,5" Foreground="#9E9E9E" FontSize="12"/>
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                            <TextBlock Text="Make Invoice"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE8FA;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                            <TextBlock Text="Transaction"/>
-                        </StackPanel>
-                    </Button>
+                        <TextBlock Text="CASHIER" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Make Invoice"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8FA;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Transaction"/>
+                            </StackPanel>
+                        </Button>
 
-                    <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9E9E9E" FontSize="12"/>
-                    <Button Style="{StaticResource MenuButtonStyle}" >
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                            <TextBlock Text="Cashiers" FontWeight="SemiBold"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Style="{StaticResource MenuButtonStyle}" Background="#ECF4FF" Foreground="#4285F4">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                            <TextBlock Text="Master Item" FontWeight="SemiBold"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                            <TextBlock Text="Category"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Style="{StaticResource MenuButtonStyle}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                            <TextBlock Text="Brand"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
+                        <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
+                        <!-- Inventory menu items -->
+                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Add Item" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Purchase Order"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Purchase Record"/>
+                            </StackPanel>
+                        </Button>
 
-                <!-- User Info -->
-                <Border Grid.Row="2" Background="#F2F2F2" BorderBrush="#E8E8E8" BorderThickness="0,1,0,0" Padding="15,10">
+                        <!-- More menu items can be collapsed for cleaner UI -->
+                        <Expander Header="More Inventory" Foreground="#9DC3F5" Margin="10,10,0,0" 
+                                  Background="Transparent" BorderThickness="0">
+                            <StackPanel>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Category"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Brand"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8EF;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Units"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Supplier"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Issued"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Expander>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Margin="0,20,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE779;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="User Manager"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </ScrollViewer>
+
+                <!-- User Info Section -->
+                <Border Grid.Row="2" Background="#174B92" BorderBrush="#144283" BorderThickness="0,1,0,0" Padding="15,12">
                     <StackPanel Orientation="Horizontal">
-                        <Border Width="32" Height="32" Background="#4285F4" CornerRadius="16">
-                            <TextBlock Text="AR" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border Width="36" Height="36" Background="#3CEFFF" CornerRadius="18">
+                            <TextBlock Text="AR" Foreground="#0A2D5E" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
                         </Border>
                         <StackPanel Margin="10,0,0,0">
-                            <TextBlock Text="Anas Raheem" FontWeight="SemiBold" FontSize="13"/>
-                            <TextBlock Text="Administrator" FontSize="11" Foreground="#6E6E6E"/>
+                            <TextBlock Text="Anas Raheem" FontWeight="SemiBold" FontSize="14" Foreground="White"/>
+                            <TextBlock Text="Administrator" FontSize="11" Foreground="#9DC3F5"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
             </Grid>
         </Border>
 
-        <!-- Main Content -->
-        <Grid Grid.Column="1" Background="White">
+        <!-- Main Content Area -->
+        <Grid Grid.Column="1" Background="#F6F9FC">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
             <!-- Top Bar -->
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+            <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Text="ADD NEW PRODUCT" FontSize="20" FontWeight="SemiBold" VerticalAlignment="Center" Margin="25,0,0,0"/>
-            </Grid>
+                    <TextBlock Text="ADD NEW PRODUCT" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0" Foreground="#1E5AAF"/>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,25,0">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Height="40">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
+                                <TextBlock Text="Save"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Height="40">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE711;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
+                                <TextBlock Text="Cancel"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
 
             <!-- Add Product Form -->
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
-                <Grid Margin="25,0,25,25">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <Grid Margin="25,15,25,25">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="20"/>
@@ -229,43 +298,40 @@
 
                     <!-- Left Column -->
                     <StackPanel Grid.Column="0">
-                        <Border Background="White" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+                        <!-- Product Information -->
+                        <Border Style="{StaticResource FormBorderStyle}">
                             <StackPanel>
-                                <TextBlock Text="Product Information" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                <TextBlock Text="Product Information" FontSize="16" FontWeight="Bold" Foreground="#1E5AAF" Margin="0,0,0,15"/>
 
-                                <!-- Product Name -->
-                                <TextBlock Text="Product Name *" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <TextBox Style="{StaticResource InputTextBoxStyle}" Text="Enter product name"/>
+                                <!-- Fields - Using consistent styling -->
+                                <TextBlock Text="Product Name *" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <TextBox Style="{StaticResource InputBoxStyle}" Text="Enter product name"/>
                                 </Border>
 
-                                <!-- Product Code -->
-                                <TextBlock Text="Product Code *" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <TextBox Style="{StaticResource InputTextBoxStyle}" Text="Enter product code"/>
+                                <TextBlock Text="Product Code *" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <TextBox Style="{StaticResource InputBoxStyle}" Text="Enter product code"/>
                                 </Border>
 
-                                <!-- Barcode -->
-                                <TextBlock Text="Barcode" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <TextBox Style="{StaticResource InputTextBoxStyle}" Text="Enter barcode number"/>
+                                <TextBlock Text="Barcode" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <TextBox Style="{StaticResource InputBoxStyle}" Text="Enter barcode number"/>
                                 </Border>
 
-                                <!-- Category -->
-                                <TextBlock Text="Category *" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <ComboBox Style="{StaticResource ComboBoxStyle}" Text="Select category">
-                                        <ComboBoxItem Content="Electronics Retail"/>
+                                <TextBlock Text="Category *" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <ComboBox BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" Height="32">
+                                        <ComboBoxItem Content="Electronics Retail" IsSelected="True"/>
                                         <ComboBoxItem Content="Repairing Services"/>
                                         <ComboBoxItem Content="Solar Panels &amp; Inverters"/>
                                     </ComboBox>
                                 </Border>
 
-                                <!-- Brand -->
-                                <TextBlock Text="Brand" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <ComboBox Style="{StaticResource ComboBoxStyle}" Text="Select brand">
-                                        <ComboBoxItem Content="Samsung"/>
+                                <TextBlock Text="Brand" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <ComboBox BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" Height="32">
+                                        <ComboBoxItem Content="Samsung" IsSelected="True"/>
                                         <ComboBoxItem Content="Apple"/>
                                         <ComboBoxItem Content="Sony"/>
                                         <ComboBoxItem Content="LG"/>
@@ -273,30 +339,26 @@
                                     </ComboBox>
                                 </Border>
 
-                                <!-- Description -->
-                                <TextBlock Text="Description" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Background="#F8F9FA" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="5" Padding="10" Margin="0,0,0,15" Height="100">
-                                    <TextBox BorderThickness="0" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top"/>
+                                <TextBlock Text="Description" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="10" Margin="0,0,0,15" Height="100">
+                                    <TextBox BorderThickness="0" Background="Transparent" TextWrapping="Wrap" AcceptsReturn="True"/>
                                 </Border>
                             </StackPanel>
                         </Border>
 
                         <!-- Product Image -->
-                        <Border Background="White" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="20">
+                        <Border Style="{StaticResource FormBorderStyle}">
                             <StackPanel>
-                                <TextBlock Text="Product Image" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15"/>
-
-                                <Border Background="#F8F9FA" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="5" Height="180">
-                                    <Grid>
-                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                            <TextBlock Text="&#xE7C5;" FontFamily="Segoe MDL2 Assets" FontSize="36" Foreground="#9E9E9E" HorizontalAlignment="Center"/>
-                                            <TextBlock Text="Drag and drop image here" Foreground="#6E6E6E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
-                                            <TextBlock Text="or" Foreground="#9E9E9E" HorizontalAlignment="Center" Margin="0,5,0,5"/>
-                                            <Button Content="Browse Files" Style="{StaticResource SecondaryButtonStyle}" Width="120" Height="32"/>
-                                        </StackPanel>
-                                    </Grid>
+                                <TextBlock Text="Product Image" FontSize="16" FontWeight="Bold" Foreground="#1E5AAF" Margin="0,0,0,15"/>
+                                <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Height="180">
+                                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <TextBlock Text="&#xE7C5;" FontFamily="Segoe MDL2 Assets" FontSize="36" Foreground="#9E9E9E" HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Drag and drop image here" Foreground="#6E6E6E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <TextBlock Text="or" Foreground="#9E9E9E" HorizontalAlignment="Center" Margin="0,5"/>
+                                        <Button Content="Browse Files" Width="120" Height="32"
+                                                Style="{StaticResource SecondaryButtonStyle}" />
+                                    </StackPanel>
                                 </Border>
-
                                 <TextBlock Text="Supported formats: JPG, PNG, GIF (Max size: 2MB)" Foreground="#9E9E9E" FontSize="12" Margin="0,10,0,0"/>
                             </StackPanel>
                         </Border>
@@ -304,71 +366,66 @@
 
                     <!-- Right Column -->
                     <StackPanel Grid.Column="2">
-                        <Border Background="White" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+                        <!-- Price Information -->
+                        <Border Style="{StaticResource FormBorderStyle}">
                             <StackPanel>
-                                <TextBlock Text="Price Information" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                <TextBlock Text="Price Information" FontSize="16" FontWeight="Bold" Foreground="#1E5AAF" Margin="0,0,0,15"/>
 
-                                <!-- Purchase Price -->
-                                <TextBlock Text="Purchase Price *" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
+                                <TextBlock Text="Purchase Price *" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Grid.Column="0" Text="Rs. " VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <TextBox Grid.Column="1" Style="{StaticResource InputTextBoxStyle}" Text="0.00"/>
+                                        <TextBox Grid.Column="1" Style="{StaticResource InputBoxStyle}" Text="0.00"/>
                                     </Grid>
                                 </Border>
 
-                                <!-- Selling Price -->
-                                <TextBlock Text="Selling Price *" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
+                                <TextBlock Text="Selling Price *" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Grid.Column="0" Text="Rs. " VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                        <TextBox Grid.Column="1" Style="{StaticResource InputTextBoxStyle}" Text="0.00"/>
+                                        <TextBox Grid.Column="1" Style="{StaticResource InputBoxStyle}" Text="0.00"/>
                                     </Grid>
                                 </Border>
 
-                                <!-- Tax -->
-                                <TextBlock Text="Tax (%)" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <TextBox Style="{StaticResource InputTextBoxStyle}" Text="0"/>
+                                <TextBlock Text="Tax (%)" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <TextBox Style="{StaticResource InputBoxStyle}" Text="0"/>
                                 </Border>
 
-                                <!-- Discount -->
-                                <TextBlock Text="Discount (%)" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <TextBox Style="{StaticResource InputTextBoxStyle}" Text="0"/>
+                                <TextBlock Text="Discount (%)" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <TextBox Style="{StaticResource InputBoxStyle}" Text="0"/>
                                 </Border>
                             </StackPanel>
                         </Border>
 
-                        <Border Background="White" BorderBrush="#E8E8E8" BorderThickness="1" CornerRadius="8" Padding="20" Margin="0,0,0,20">
+                        <!-- Inventory Information -->
+                        <Border Style="{StaticResource FormBorderStyle}">
                             <StackPanel>
-                                <TextBlock Text="Inventory Information" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,15"/>
+                                <TextBlock Text="Inventory Information" FontSize="16" FontWeight="Bold" Foreground="#1E5AAF" Margin="0,0,0,15"/>
 
-                                <!-- Stock Quantity -->
-                                <TextBlock Text="Stock Quantity *" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <TextBox Style="{StaticResource InputTextBoxStyle}" Text="0"/>
+                                <TextBlock Text="Stock Quantity *" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <TextBox Style="{StaticResource InputBoxStyle}" Text="0"/>
                                 </Border>
 
-                                <!-- Alert Quantity -->
-                                <TextBlock Text="Alert Quantity" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <TextBox Style="{StaticResource InputTextBoxStyle}" Text="0"/>
+                                <TextBlock Text="Alert Quantity" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <TextBox Style="{StaticResource InputBoxStyle}" Text="0"/>
                                 </Border>
 
-                                <!-- Unit -->
-                                <TextBlock Text="Unit" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <ComboBox Style="{StaticResource ComboBoxStyle}" Text="Select unit">
-                                        <ComboBoxItem Content="Piece"/>
+                                <TextBlock Text="Unit" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <ComboBox BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" Height="32">
+                                        <ComboBoxItem Content="Piece" IsSelected="True"/>
                                         <ComboBoxItem Content="Box"/>
                                         <ComboBoxItem Content="Kg"/>
                                         <ComboBoxItem Content="Meter"/>
@@ -376,22 +433,15 @@
                                     </ComboBox>
                                 </Border>
 
-                                <!-- Status -->
-                                <TextBlock Text="Status" Style="{StaticResource InputLabelStyle}"/>
-                                <Border Style="{StaticResource InputFieldStyle}">
-                                    <ComboBox Style="{StaticResource ComboBoxStyle}" SelectedIndex="0">
-                                        <ComboBoxItem Content="Active"/>
+                                <TextBlock Text="Status" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold"/>
+                                <Border Style="{StaticResource FieldBorderStyle}">
+                                    <ComboBox BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" Height="32">
+                                        <ComboBoxItem Content="Active" IsSelected="True"/>
                                         <ComboBoxItem Content="Inactive"/>
                                     </ComboBox>
                                 </Border>
                             </StackPanel>
                         </Border>
-
-                        <!-- Form Buttons -->
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-                            <Button Content="Cancel" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,15,0"/>
-                            <Button Content="Save" Style="{StaticResource ActionButtonStyle}"/>
-                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </ScrollViewer>

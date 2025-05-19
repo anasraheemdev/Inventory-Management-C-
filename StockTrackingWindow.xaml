@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="Stock Tracking" Height="720" Width="1280"
+        mc:Ignorable="d" Title="Stock Tracking" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+        <!-- Consolidated styles with fewer properties -->
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -18,7 +18,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -27,7 +28,6 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#3672CF"/>
-                    <Setter Property="Foreground" Value="White"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -54,7 +54,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -67,6 +68,12 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <!-- Common colors as resources -->
+        <SolidColorBrush x:Key="PrimaryBlue" Color="#1E5AAF"/>
+        <SolidColorBrush x:Key="DarkBlue" Color="#1648A0"/>
+        <SolidColorBrush x:Key="LightBlue" Color="#9DC3F5"/>
+        <SolidColorBrush x:Key="AccentBlue" Color="#3CEFFF"/>
     </Window.Resources>
 
     <Grid>
@@ -75,7 +82,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Border Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0,0,1,0">
+        <!-- Sidebar -->
+        <Border Background="{StaticResource PrimaryBlue}" BorderBrush="{StaticResource DarkBlue}" BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="70"/>
@@ -83,23 +91,33 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
+                <!-- Logo -->
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
                     <TextBlock Text="SULTA" FontSize="22" FontWeight="Bold" Foreground="White"/>
-                    <TextBlock Text="NI" FontSize="22" FontWeight="Bold" Foreground="#3CEFFF"/>
-                    <TextBlock Text=" POS" FontSize="16" Foreground="#9DC3F5" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
+                    <TextBlock Text="NI" FontSize="22" FontWeight="Bold" Foreground="{StaticResource AccentBlue}"/>
+                    <TextBlock Text=" POS" FontSize="16" Foreground="{StaticResource LightBlue}" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
                 </StackPanel>
 
+                <!-- Menu Items -->
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10,20,10,0">
-                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF">
+                        <Button Style="{StaticResource MenuButtonStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Dashboard" FontWeight="SemiBold"/>
+                                <TextBlock Text="Dashboard"/>
                             </StackPanel>
                         </Button>
 
-                        <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE878;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Stock Tracking" FontWeight="SemiBold"/>
+                            </StackPanel>
+                        </Button>
 
+                        <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="{StaticResource LightBlue}" FontSize="12" FontWeight="SemiBold"/>
+
+                        <!-- Combined menu items with compact syntax -->
                         <Button Style="{StaticResource MenuButtonStyle}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
@@ -157,43 +175,45 @@
                     </StackPanel>
                 </ScrollViewer>
 
+                <!-- User Profile -->
                 <Border Grid.Row="2" Background="#174B92" BorderBrush="#144283" BorderThickness="0,1,0,0" Padding="15,12">
                     <StackPanel Orientation="Horizontal">
-                        <Border Width="36" Height="36" Background="#3CEFFF" CornerRadius="18">
+                        <Border Width="36" Height="36" Background="{StaticResource AccentBlue}" CornerRadius="18">
                             <TextBlock Text="ST" Foreground="#0A2D5E" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
                         </Border>
                         <StackPanel Margin="10,0,0,0">
                             <TextBlock Text="Stock Admin" FontWeight="SemiBold" FontSize="14" Foreground="White"/>
-                            <TextBlock Text="Administrator" FontSize="11" Foreground="#9DC3F5"/>
+                            <TextBlock Text="Administrator" FontSize="11" Foreground="{StaticResource LightBlue}"/>
                         </StackPanel>
                     </StackPanel>
                 </Border>
             </Grid>
         </Border>
 
+        <!-- Main Content -->
         <Grid Grid.Column="1" Background="#F6F9FC">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
+            <!-- Header -->
             <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-
-                    <TextBlock Text="STOCK DASHBOARD" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0" Foreground="#1E5AAF"/>
-
-                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,25,0">
-                        <Border Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0" CornerRadius="6" Padding="15,8" Margin="0,0,15,0" Height="42">
-                            <TextBlock Text="2024" FontSize="20" FontWeight="Bold" Foreground="White"/>
-                        </Border>
-                    </StackPanel>
+                    <TextBlock Text="STOCK TRACKING" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" 
+                              Margin="25,0,0,0" Foreground="{StaticResource PrimaryBlue}"/>
+                    <Border Grid.Column="1" Background="{StaticResource PrimaryBlue}" CornerRadius="6" 
+                           Padding="15,8" Margin="0,0,25,0" Height="42">
+                        <TextBlock Text="2024" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                    </Border>
                 </Grid>
             </Border>
 
+            <!-- Dashboard Content -->
             <Grid Grid.Row="1" Margin="25,15,25,25">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -201,9 +221,11 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <Border Grid.Row="0" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="0,0,0,12" Background="Transparent">
+                <!-- Tabs -->
+                <Border Grid.Row="0" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="0,0,0,12">
                     <StackPanel Orientation="Horizontal">
-                        <Button Style="{StaticResource TabButtonStyle}" Background="#1E5AAF" Foreground="White" FontWeight="SemiBold">
+                        <Button Style="{StaticResource TabButtonStyle}" Background="{StaticResource PrimaryBlue}" 
+                               Foreground="White" FontWeight="SemiBold">
                             <TextBlock Text="General"/>
                         </Button>
                         <Button Style="{StaticResource TabButtonStyle}" Margin="10,0,0,0">
@@ -212,22 +234,23 @@
                     </StackPanel>
                 </Border>
 
+                <!-- Metric Cards -->
                 <Grid Grid.Row="1" Margin="0,20,0,0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
+                    <!-- Total Items Card -->
                     <Border Grid.Column="0" Style="{StaticResource MetricCardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0">
+                            <StackPanel>
                                 <TextBlock Text="Total Items" Foreground="#6E6E6E" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="1,500" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
                                 <StackPanel Orientation="Horizontal">
@@ -235,21 +258,21 @@
                                     <TextBlock Text=" 5% Up from last month" Foreground="#4CAF50" FontSize="12" FontWeight="Medium"/>
                                 </StackPanel>
                             </StackPanel>
-
                             <Border Grid.Column="1" Width="45" Height="45" Background="#EBF5FF" CornerRadius="22" VerticalAlignment="Top">
-                                <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Foreground="#1E5AAF" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource PrimaryBlue}" 
+                                          FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
 
+                    <!-- Items In Stock Card -->
                     <Border Grid.Column="1" Style="{StaticResource MetricCardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0">
+                            <StackPanel>
                                 <TextBlock Text="Items In Stock" Foreground="#6E6E6E" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="1,200" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
                                 <StackPanel Orientation="Horizontal">
@@ -257,21 +280,21 @@
                                     <TextBlock Text=" 2% Up from last month" Foreground="#4CAF50" FontSize="12" FontWeight="Medium"/>
                                 </StackPanel>
                             </StackPanel>
-
                             <Border Grid.Column="1" Width="45" Height="45" Background="#E8F5E9" CornerRadius="22" VerticalAlignment="Top">
-                                <TextBlock Text="&#xE8EB;" FontFamily="Segoe MDL2 Assets" Foreground="#4CAF50" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xE8EB;" FontFamily="Segoe MDL2 Assets" Foreground="#4CAF50" 
+                                          FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
 
+                    <!-- Low Stock Items Card -->
                     <Border Grid.Column="2" Style="{StaticResource MetricCardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0">
+                            <StackPanel>
                                 <TextBlock Text="Low Stock Items" Foreground="#6E6E6E" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="150" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
                                 <StackPanel Orientation="Horizontal">
@@ -279,20 +302,21 @@
                                     <TextBlock Text=" 10% Down from last month" Foreground="#F44336" FontSize="12" FontWeight="Medium"/>
                                 </StackPanel>
                             </StackPanel>
-
                             <Border Grid.Column="1" Width="45" Height="45" Background="#FFEBEE" CornerRadius="22" VerticalAlignment="Top">
-                                <TextBlock Text="&#xE8F2;" FontFamily="Segoe MDL2 Assets" Foreground="#F44336" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xE8F2;" FontFamily="Segoe MDL2 Assets" Foreground="#F44336" 
+                                          FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
+
+                    <!-- Out of Stock Items Card -->
                     <Border Grid.Column="3" Style="{StaticResource MetricCardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0">
+                            <StackPanel>
                                 <TextBlock Text="Out of Stock Items" Foreground="#6E6E6E" FontSize="13" FontWeight="Medium"/>
                                 <TextBlock Text="50" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
                                 <StackPanel Orientation="Horizontal">
@@ -300,20 +324,22 @@
                                     <TextBlock Text=" 3% Down from last month" Foreground="#F44336" FontSize="12" FontWeight="Medium"/>
                                 </StackPanel>
                             </StackPanel>
-
                             <Border Grid.Column="1" Width="45" Height="45" Background="#FFEBEE" CornerRadius="22" VerticalAlignment="Top">
-                                <TextBlock Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Foreground="#F44336" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Foreground="#F44336" 
+                                          FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
                 </Grid>
 
+                <!-- Charts and Tables -->
                 <Grid Grid.Row="2" Margin="0,22,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
+                    <!-- Stock Level Chart -->
                     <Border Grid.Row="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18" Background="White">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
@@ -323,26 +349,23 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="250"/>
                             </Grid.RowDefinitions>
-
-                            <Grid Grid.Row="0">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-
                                 <TextBlock Text="Stock Level Changes" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A"/>
-
-                                <Border Grid.Column="1" Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0" CornerRadius="6" Padding="12,6">
+                                <Border Grid.Column="1" Background="{StaticResource PrimaryBlue}" CornerRadius="6" Padding="12,6">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="This Month" FontSize="13" FontWeight="Medium" Foreground="White"/>
                                         <TextBlock Text="&#xE0E5;" FontFamily="Segoe MDL2 Assets" Margin="6,0,0,0" Foreground="White"/>
                                     </StackPanel>
                                 </Border>
                             </Grid>
-
-                            </Grid>
+                        </Grid>
                     </Border>
 
+                    <!-- Bottom Three Cards -->
                     <Grid Grid.Row="1" Margin="0,18,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -350,7 +373,9 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Border Grid.Column="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18" Background="White" Margin="0,0,9,0">
+                        <!-- Latest Stock Receipts -->
+                        <Border Grid.Column="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" 
+                               Padding="18" Background="White" Margin="0,0,9,0">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
                             </Border.Effect>
@@ -359,15 +384,15 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-
-                                <TextBlock Grid.Row="0" Text="Latest Stock Receipts" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
-
-                                <StackPanel Grid.Row="1">
-                                    </StackPanel>
+                                <TextBlock Grid.Row="0" Text="Latest Stock Receipts" FontSize="18" 
+                                          FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                <StackPanel Grid.Row="1" />
                             </Grid>
                         </Border>
 
-                        <Border Grid.Column="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18" Background="White" Margin="9,0,9,0">
+                        <!-- Latest Stock Issued -->
+                        <Border Grid.Column="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" 
+                               Padding="18" Background="White" Margin="9,0,9,0">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
                             </Border.Effect>
@@ -376,15 +401,15 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-
-                                <TextBlock Grid.Row="0" Text="Latest Stock Issued" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
-
-                                <StackPanel Grid.Row="1">
-                                    </StackPanel>
+                                <TextBlock Grid.Row="0" Text="Latest Stock Issued" FontSize="18" 
+                                          FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                <StackPanel Grid.Row="1" />
                             </Grid>
                         </Border>
 
-                        <Border Grid.Column="2" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18" Background="White" Margin="9,0,0,0">
+                        <!-- Low Stock Items -->
+                        <Border Grid.Column="2" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" 
+                               Padding="18" Background="White" Margin="9,0,0,0">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
                             </Border.Effect>
@@ -393,11 +418,9 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
-
-                                <TextBlock Grid.Row="0" Text="Low Stock Items" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
-
-                                <StackPanel Grid.Row="1">
-                                    </StackPanel>
+                                <TextBlock Grid.Row="0" Text="Low Stock Items" FontSize="18" 
+                                          FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                <StackPanel Grid.Row="1" />
                             </Grid>
                         </Border>
                     </Grid>

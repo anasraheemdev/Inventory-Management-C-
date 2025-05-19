@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <!-- Reuse the styles from the main window -->
+        <!-- Common styles - consider moving these to App.xaml for reuse across multiple windows -->
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -42,6 +42,18 @@
             <Setter Property="RowHeight" Value="40"/>
             <Setter Property="AlternationCount" Value="2"/>
             <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+        </Style>
+
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F0F5FF"/>
+            <Setter Property="Foreground" Value="#1E5AAF"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="8,0"/>
         </Style>
 
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
@@ -69,6 +81,39 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="SecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource PrimaryButtonStyle}">
+            <Setter Property="Background" Value="#E0E0E0"/>
+            <Setter Property="Foreground" Value="#1A1A1A"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#D0D0D0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="CardBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FormControlStyle" TargetType="Control">
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <Style x:Key="FormLabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#6E6E6E"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -77,7 +122,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Left Sidebar (Reusing from main window) -->
+        <!-- Left Sidebar -->
         <Border Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
@@ -93,10 +138,10 @@
                     <TextBlock Text=" POS" FontSize="16" Foreground="#9DC3F5" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
                 </StackPanel>
 
-                <!-- Sidebar Menu (Similar to main window) -->
-                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Style="{DynamicResource ScrollViewerStyle}">
+                <!-- Sidebar Menu -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10,20,10,0">
-                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF" Click="Button_Click_1">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_1">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Dashboard" FontWeight="SemiBold"/>
@@ -118,6 +163,7 @@
                         </Button>
 
                         <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
+                        <!-- Inventory menu items -->
                         <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_2">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
@@ -126,58 +172,53 @@
                         </Button>
                         <Button Style="{StaticResource MenuButtonStyle}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Category"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Brand"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8EF;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Units"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_4">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Cashiers"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8CB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Master Price"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Purchase Order"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Supplier"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Receive"/>
+                                <TextBlock Text="Purchase Record"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_3">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Issued"/>
+
+                        <!-- More menu items can be collapsed for cleaner UI -->
+                        <Expander Header="More Inventory" Foreground="#9DC3F5" Margin="10,10,0,0" 
+                                  Background="Transparent" BorderThickness="0">
+                            <StackPanel>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Category"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Brand"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8EF;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Units"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Supplier"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_3">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Issued"/>
+                                    </StackPanel>
+                                </Button>
                             </StackPanel>
-                        </Button>
+                        </Expander>
 
                         <Button Style="{StaticResource MenuButtonStyle}" Margin="0,20,0,0">
                             <StackPanel Orientation="Horizontal">
@@ -187,7 +228,6 @@
                         </Button>
                     </StackPanel>
                 </ScrollViewer>
-
 
                 <!-- User Info Section -->
                 <Border Grid.Row="2" Background="#174B92" BorderBrush="#144283" BorderThickness="0,1,0,0" Padding="15,12">
@@ -222,8 +262,18 @@
                     <TextBlock Text="PURCHASE RECORD" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0" Foreground="#1E5AAF"/>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,25,0">
-                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="New Purchase" Height="40"/>
-                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Export" Height="40"/>
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Height="40">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
+                                <TextBlock Text="New Purchase"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource SecondaryButtonStyle}" Height="40">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE74E;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
+                                <TextBlock Text="Export"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -236,45 +286,119 @@
                 </Grid.RowDefinitions>
 
                 <!-- Filters -->
-                <Border Grid.Row="0" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18" Margin="0,0,0,15">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Margin="0,0,15,0">
-                            <TextBlock Text="From Date" Margin="0,0,0,5" Foreground="#6E6E6E"/>
-                            <DatePicker Width="150"/>
+                <Border Grid.Row="0" Style="{StaticResource CardBorderStyle}" Padding="18" Margin="0,0,0,15">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Margin="0,0,15,0">
+                            <TextBlock Text="From Date" Style="{StaticResource FormLabelStyle}"/>
+                            <DatePicker Width="150" Style="{StaticResource FormControlStyle}"/>
                         </StackPanel>
-                        <StackPanel Margin="0,0,15,0">
-                            <TextBlock Text="To Date" Margin="0,0,0,5" Foreground="#6E6E6E"/>
-                            <DatePicker Width="150"/>
+
+                        <StackPanel Grid.Column="1" Margin="0,0,15,0">
+                            <TextBlock Text="To Date" Style="{StaticResource FormLabelStyle}"/>
+                            <DatePicker Width="150" Style="{StaticResource FormControlStyle}"/>
                         </StackPanel>
-                        <StackPanel Margin="0,0,15,0">
-                            <TextBlock Text="Supplier" Margin="0,0,0,5" Foreground="#6E6E6E"/>
-                            <ComboBox Width="200"/>
+
+                        <StackPanel Grid.Column="2" Margin="0,0,15,0">
+                            <TextBlock Text="Supplier" Style="{StaticResource FormLabelStyle}"/>
+                            <ComboBox Width="200" Style="{StaticResource FormControlStyle}"/>
                         </StackPanel>
-                        <Button Style="{StaticResource PrimaryButtonStyle}" Content="Apply Filter" VerticalAlignment="Bottom" Height="31"/>
-                    </StackPanel>
+
+                        <StackPanel Grid.Column="3" Margin="0,0,15,0">
+                            <TextBlock Text="Status" Style="{StaticResource FormLabelStyle}"/>
+                            <ComboBox Width="150" Style="{StaticResource FormControlStyle}">
+                                <ComboBoxItem Content="All"/>
+                                <ComboBoxItem Content="Completed"/>
+                                <ComboBoxItem Content="Pending"/>
+                                <ComboBoxItem Content="Cancelled"/>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <TextBox Grid.Column="4" Margin="0,20,15,0" Height="32" 
+                                 VerticalContentAlignment="Center" Padding="8,0"
+                                 BorderBrush="#E0E0E0">
+                            <TextBox.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="6"/>
+                                </Style>
+                            </TextBox.Resources>
+                        </TextBox>
+
+                        <Button Grid.Column="5" Style="{StaticResource PrimaryButtonStyle}" 
+                                VerticalAlignment="Bottom" Height="32" Margin="0,20,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE71C;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
+                                <TextBlock Text="Apply Filter"/>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
                 </Border>
 
                 <!-- Purchase Record DataGrid -->
-                <Border Grid.Row="1" Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18">
-                    <DataGrid Style="{StaticResource DataGridStyle}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Purchase ID" Width="*"/>
-                            <DataGridTextColumn Header="Date" Width="*"/>
-                            <DataGridTextColumn Header="Supplier" Width="*"/>
-                            <DataGridTextColumn Header="Total Amount" Width="*"/>
-                            <DataGridTextColumn Header="Status" Width="*"/>
-                            <DataGridTemplateColumn Header="Actions" Width="*">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Button Content="View" Style="{StaticResource PrimaryButtonStyle}" Margin="0,0,5,0"/>
-                                            <Button Content="Edit" Style="{StaticResource PrimaryButtonStyle}"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                <Border Grid.Row="1" Style="{StaticResource CardBorderStyle}" Padding="18">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <DataGrid Style="{StaticResource DataGridStyle}"
+                                  ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Purchase ID" Width="120" Binding="{Binding Id}"/>
+                                <DataGridTextColumn Header="Date" Width="120" Binding="{Binding Date}"/>
+                                <DataGridTextColumn Header="Supplier" Width="*" Binding="{Binding Supplier}"/>
+                                <DataGridTextColumn Header="Total Amount" Width="120" Binding="{Binding Amount}"/>
+                                <DataGridTemplateColumn Header="Status" Width="120">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border Background="{Binding StatusColor}" CornerRadius="4" 
+                                                    Padding="5,2" HorizontalAlignment="Left" Margin="0,6">
+                                                <TextBlock Text="{Binding Status}" Foreground="White" FontSize="12"/>
+                                            </Border>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="Actions" Width="180">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="0,4">
+                                                <Button Style="{StaticResource PrimaryButtonStyle}" Padding="10,5" Margin="0,0,5,0">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="&#xE8A0;" FontFamily="Segoe MDL2 Assets" Margin="0,0,5,0"/>
+                                                        <TextBlock Text="View"/>
+                                                    </StackPanel>
+                                                </Button>
+                                                <Button Style="{StaticResource SecondaryButtonStyle}" Padding="10,5">
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,5,0"/>
+                                                        <TextBlock Text="Edit"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                        <!-- Pagination -->
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+                            <Button Content="Previous" Style="{StaticResource SecondaryButtonStyle}"/>
+                            <Button Content="1" Style="{StaticResource PrimaryButtonStyle}" Width="40"/>
+                            <Button Content="2" Style="{StaticResource SecondaryButtonStyle}" Width="40"/>
+                            <Button Content="3" Style="{StaticResource SecondaryButtonStyle}" Width="40"/>
+                            <Button Content="Next" Style="{StaticResource SecondaryButtonStyle}"/>
+                        </StackPanel>
+                    </Grid>
                 </Border>
             </Grid>
         </Grid>

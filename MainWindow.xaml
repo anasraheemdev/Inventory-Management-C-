@@ -129,13 +129,13 @@
                                 <TextBlock Text="Category"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Brand"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Button_Click_5">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8EF;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Units"/>

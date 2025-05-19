@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalDB"
         mc:Ignorable="d"
-        Title="SULTANI - Login" Height="720" Width="1280"
+        Title="SULTANI POS - Login" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <Style x:Key="LoginButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#4285F4"/>
+        <!-- Reusable Styles - Consistent with PurchaseRecordWindow -->
+        <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#1E5AAF"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Height" Value="46"/>
@@ -20,7 +21,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
@@ -28,19 +30,43 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#3367D6"/>
+                    <Setter Property="Background" Value="#3672CF"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
 
-        <Style x:Key="InputFieldStyle" TargetType="Border">
-            <Setter Property="Background" Value="#F8F9FA"/>
-            <Setter Property="BorderBrush" Value="#E8E8E8"/>
+        <Style x:Key="FormControlStyle" TargetType="Control">
+            <Setter Property="Height" Value="46"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <Style x:Key="FormLabelStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#6E6E6E"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <Style x:Key="CardBorderStyle" TargetType="Border">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="InputFieldStyle" TargetType="Border">
+            <Setter Property="Background" Value="#F6F9FC"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="6"/>
             <Setter Property="Padding" Value="12,0"/>
             <Setter Property="Height" Value="46"/>
-            <Setter Property="Margin" Value="0,8,0,16"/>
+            <Setter Property="Margin" Value="0,0,0,16"/>
         </Style>
 
         <Style x:Key="InputTextBoxStyle" TargetType="TextBox">
@@ -67,55 +93,110 @@
         </Grid.ColumnDefinitions>
 
         <!-- Left Panel - Brand Showcase -->
-        <Grid Grid.Column="0" Background="#F8F9FA">
+        <Grid Grid.Column="0" Background="#F6F9FC">
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Width="565">
-                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0" Width="184">
-                    <TextBlock Text="SULTA" FontSize="40" FontWeight="Bold" Foreground="#333333"/>
-                    <TextBlock Text="NI" FontSize="40" FontWeight="Bold" Foreground="#4285F4"/>
-                    
+                <!-- Logo - Matching the style from PurchaseRecordWindow -->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,5">
+                    <TextBlock Text="SULTA" FontSize="40" FontWeight="Bold" Foreground="#1E5AAF"/>
+                    <TextBlock Text="NI" FontSize="40" FontWeight="Bold" Foreground="#3CEFFF"/>
+                    <TextBlock Text=" POS" FontSize="30" Foreground="#9DC3F5" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
                 </StackPanel>
-                <TextBlock Text="POINT OF SALE SYSTEM" FontSize="16" Foreground="#6E6E6E" HorizontalAlignment="Center" Margin="0,5,0,30"/>
 
-                <!-- Decorative Icon -->
-                <Border Background="#ECF4FF" Width="200" Height="200" CornerRadius="100" Margin="0,20,0,30">
-                    <TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" FontSize="80" Foreground="#4285F4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="POINT OF SALE SYSTEM" FontSize="16" Foreground="#6E6E6E" HorizontalAlignment="Center" Margin="0,0,0,40"/>
+
+                <!-- Decorative Features -->
+                <Border Background="#ECF4FF" Width="200" Height="200" CornerRadius="100" Margin="0,0,0,40">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.2" Color="#000000"/>
+                    </Border.Effect>
+                    <TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" FontSize="80" 
+                               Foreground="#1E5AAF" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Border>
 
-                <TextBlock Text="Manage your business with ease" FontSize="18" FontWeight="SemiBold" Foreground="#333333" HorizontalAlignment="Center"/>
-                <TextBlock Text="Inventory, Sales, Reporting, and more" FontSize="14" Foreground="#6E6E6E" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                <!-- Features section with icons - Adding more visual appeal -->
+                <Grid Width="400">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Column="0" Grid.Row="0" Margin="0,0,10,20">
+                        <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" FontSize="24" 
+                                   Foreground="#1E5AAF" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Inventory Management" FontSize="16" FontWeight="SemiBold" 
+                                   Foreground="#333333" Margin="0,5,0,0"/>
+                        <TextBlock Text="Track stock levels with ease" FontSize="13" Foreground="#6E6E6E" 
+                                   TextWrapping="Wrap" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="0" Margin="10,0,0,20">
+                        <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" FontSize="24" 
+                                   Foreground="#1E5AAF" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Sales &amp; Reporting" FontSize="16" FontWeight="SemiBold" 
+                                   Foreground="#333333" Margin="0,5,0,0"/>
+                        <TextBlock Text="Get insights on your business" FontSize="13" Foreground="#6E6E6E" 
+                                   TextWrapping="Wrap" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="0" Grid.Row="1" Margin="0,0,10,0">
+                        <TextBlock Text="&#xE8FA;" FontFamily="Segoe MDL2 Assets" FontSize="24" 
+                                   Foreground="#1E5AAF" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Customer Management" FontSize="16" FontWeight="SemiBold" 
+                                   Foreground="#333333" Margin="0,5,0,0"/>
+                        <TextBlock Text="Build lasting relationships" FontSize="13" Foreground="#6E6E6E" 
+                                   TextWrapping="Wrap" Margin="0,5,0,0"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Grid.Row="1" Margin="10,0,0,0">
+                        <TextBlock Text="&#xE779;" FontFamily="Segoe MDL2 Assets" FontSize="24" 
+                                   Foreground="#1E5AAF" HorizontalAlignment="Left"/>
+                        <TextBlock Text="User Management" FontSize="16" FontWeight="SemiBold" 
+                                   Foreground="#333333" Margin="0,5,0,0"/>
+                        <TextBlock Text="Control access &amp; permissions" FontSize="13" Foreground="#6E6E6E" 
+                                   TextWrapping="Wrap" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </Grid>
 
         <!-- Right Panel - Login Form -->
-        <Border Grid.Column="1" Background="White" BorderBrush="#E8E8E8" BorderThickness="1,0,0,0">
+        <Border Grid.Column="1" Background="White">
             <Grid Margin="50,0">
                 <StackPanel VerticalAlignment="Center">
-                    <TextBlock Text="Welcome Back!" FontSize="28" FontWeight="Bold" Foreground="#333333" Margin="0,0,0,12"/>
+                    <TextBlock Text="Welcome Back!" FontSize="28" FontWeight="Bold" Foreground="#1E5AAF" Margin="0,0,0,12"/>
                     <TextBlock Text="Log in to your account to continue" FontSize="14" Foreground="#6E6E6E" Margin="0,0,0,40"/>
 
                     <!-- Username Field -->
-                    <TextBlock Text="Username" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                    <TextBlock Text="Username" Style="{StaticResource FormLabelStyle}"/>
                     <Border Style="{StaticResource InputFieldStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,10,0" Foreground="#6E6E6E"/>
-                            <TextBox Grid.Column="1" Style="{StaticResource InputTextBoxStyle}"/>
+                            <TextBlock Grid.Column="0" Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" 
+                                       VerticalAlignment="Center" Margin="0,0,10,0" Foreground="#6E6E6E"/>
+                            <TextBox Grid.Column="1" Style="{StaticResource InputTextBoxStyle}" 
+                                     x:Name="UsernameTextBox" TabIndex="0"/>
                         </Grid>
                     </Border>
 
                     <!-- Password Field -->
-                    <TextBlock Text="Password" FontSize="13" FontWeight="SemiBold" Margin="0,0,0,8"/>
+                    <TextBlock Text="Password" Style="{StaticResource FormLabelStyle}"/>
                     <Border Style="{StaticResource InputFieldStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" Margin="0,0,10,0" Foreground="#6E6E6E"/>
-                            <PasswordBox Grid.Column="1" Style="{StaticResource InputPasswordBoxStyle}"/>
+                            <TextBlock Grid.Column="0" Text="&#xE72E;" FontFamily="Segoe MDL2 Assets" 
+                                       VerticalAlignment="Center" Margin="0,0,10,0" Foreground="#6E6E6E"/>
+                            <PasswordBox Grid.Column="1" Style="{StaticResource InputPasswordBoxStyle}" 
+                                         x:Name="PasswordBox" TabIndex="1"/>
                         </Grid>
                     </Border>
 
@@ -127,15 +208,18 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <CheckBox VerticalAlignment="Center"/>
-                            <TextBlock Text="Remember me" FontSize="13" Margin="8,0,0,0" VerticalAlignment="Center" Foreground="#6E6E6E"/>
+                            <CheckBox VerticalAlignment="Center" x:Name="RememberMeCheckbox" TabIndex="2"/>
+                            <TextBlock Text="Remember me" FontSize="13" Margin="8,0,0,0" 
+                                       VerticalAlignment="Center" Foreground="#6E6E6E"/>
                         </StackPanel>
 
-                        <TextBlock Grid.Column="1" Text="Forgot password?" FontSize="13" Foreground="#4285F4" Cursor="Hand"/>
+                        <TextBlock Grid.Column="1" Text="Forgot password?" FontSize="13" 
+                                   Foreground="#1E5AAF" Cursor="Hand"/>
                     </Grid>
 
                     <!-- Login Button -->
-                    <Button Style="{StaticResource LoginButtonStyle}" Content="Log In"/>
+                    <Button Style="{StaticResource PrimaryButtonStyle}" Content="Log In" TabIndex="3" 
+                            Click="LoginButton_Click"/>
 
                     <!-- Divider -->
                     <Grid Margin="0,32,0,32">
@@ -144,20 +228,28 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" BorderBrush="#E8E8E8" BorderThickness="0,1,0,0" Margin="0,8,12,0"/>
+                        <Border Grid.Column="0" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Margin="0,8,12,0"/>
                         <TextBlock Grid.Column="1" Text="OR" Foreground="#9E9E9E" FontSize="12"/>
-                        <Border Grid.Column="2" BorderBrush="#E8E8E8" BorderThickness="0,1,0,0" Margin="12,8,0,0"/>
+                        <Border Grid.Column="2" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Margin="12,8,0,0"/>
                     </Grid>
 
                     <!-- Support Information -->
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="Need help? Contact support" FontSize="13" Foreground="#6E6E6E" HorizontalAlignment="Center"/>
-                        <TextBlock Text="anasraheem@synovate.pk" FontSize="13" Foreground="#4285F4" HorizontalAlignment="Center" Margin="0,4,0,0"/>
-                    </StackPanel>
+                    <Border Style="{StaticResource CardBorderStyle}" Padding="16" Margin="0,0,0,20">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="Need help?" FontSize="14" FontWeight="SemiBold" 
+                                       Foreground="#1E5AAF" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Contact our support team" FontSize="13" Foreground="#6E6E6E" 
+                                       HorizontalAlignment="Center" Margin="0,4,0,8"/>
+                            <TextBlock Text="anasraheem@synovate.pk" FontSize="13" Foreground="#1E5AAF" 
+                                       HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Border>
                 </StackPanel>
 
                 <!-- Footer -->
-                <TextBlock Text="© 2025 SULTANI POS. All rights reserved." FontSize="11" Foreground="#9E9E9E" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20"/>
+                <TextBlock Text="© 2025 SULTANI POS. All rights reserved." FontSize="11" 
+                           Foreground="#9E9E9E" HorizontalAlignment="Center" 
+                           VerticalAlignment="Bottom" Margin="0,0,0,20"/>
             </Grid>
         </Border>
     </Grid>

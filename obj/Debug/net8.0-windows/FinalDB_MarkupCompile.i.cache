@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\New Moon\Desktop\DB\FinalDB\obj\Debug\net8.0-windows\
+C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\
 FinalDB
 none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP;WINDOWS;WINDOWS7_0;NET5_0_OR_GREATER;NET6_0_OR_GREATER;NET7_0_OR_GREATER;NET8_0_OR_GREATER;NETCOREAPP3_0_OR_GREATER;NETCOREAPP3_1_OR_GREATER;WINDOWS7_0_OR_GREATER
-C:\Users\New Moon\Desktop\DB\FinalDB\App.xaml
-91867704071
+C:\Users\New Moon\Desktop\DB1\FinalDB\App.xaml
+10868768695
+3408277694
+15367231883
+201269954854
+AddCashier.xaml;AddProductPage.xaml;CategoriesPage.xaml;Invoice.xaml;LoginPage.xaml;MainWindow.xaml;ProductsPage.xaml;PurchaseRecordWindow.xaml;StockTrackingWindow.xaml;test.xaml;
 
-14-1753331439
-1981839832580
-AddCashier.xaml;AddProductPage.xaml;CategoriesPage.xaml;Invoice.xaml;LoginPage.xaml;MainWindow.xaml;ProductsPage.xaml;PurchaseRecordWindow.xaml;StockTrackingWindow.xaml;
-
-False
+True
 
