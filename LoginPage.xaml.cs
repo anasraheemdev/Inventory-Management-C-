@@ -24,11 +24,24 @@ namespace FinalDB
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            CategoriesPage categoriesPage = new CategoriesPage();
-            categoriesPage.Show();
-            this.Close();
+            // Add your login button click logic here
+            // For example:
+            string username = UsernameTextBox.Text;
+            string password = PasswordBox.Password;
+
+            // Validate credentials and navigate to the next page if successful
+            // if (IsValidUser(username, password))
+            // {
+            //     MainWindow mainWindow = new MainWindow(); // Replace MainWindow with your actual next window
+            //     mainWindow.Show();
+            //     this.Close();
+            // }
+            // else
+            // {
+            //     MessageBox.Show("Invalid username or password.", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            // }
         }
     }
 }

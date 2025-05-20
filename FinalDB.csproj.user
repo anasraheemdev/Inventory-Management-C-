@@ -8,9 +8,6 @@
     <Compile Update="AddProductPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="CategoriesPage.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Invoice.xaml.cs">
       <SubType>Code</SubType>
     </Compile>

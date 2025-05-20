@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+        <SolidColorBrush x:Key="PrimaryForegroundBrush" Color="#1E5AAF"/>
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -203,7 +204,7 @@
                                 <TextBlock Text="Make Invoice"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}" Name="TransactionButton" Click="TransactionButton_Click">
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="TransactionButton" Click="TransactionButton_Click" RenderTransformOrigin="-0.575,-0.358">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8FA;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Transaction"/>
@@ -466,8 +467,8 @@
 
                                 <Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Margin="0,5,0,10"/>
 
-                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Total:" FontWeight="Bold" FontSize="18" Foreground="{StaticResource PrimaryButtonStyle.Setters[0].Value}"/>
-                                <TextBlock Grid.Row="4" Grid.Column="1" Text="Rs. 0.00" FontWeight="Bold" FontSize="18" HorizontalAlignment="Right" Foreground="{StaticResource PrimaryButtonStyle.Setters[0].Value}"/>
+                                <TextBlock Grid.Row="4" Grid.Column="0" Text="Total:" FontWeight="Bold" FontSize="18" Foreground="{StaticResource PrimaryForegroundBrush}"/>
+                                <TextBlock Grid.Row="4" Grid.Column="1" Text="Rs. 0.00" FontWeight="Bold" FontSize="18" HorizontalAlignment="Right" Foreground="{StaticResource PrimaryForegroundBrush}"/>
                             </Grid>
                         </Border>
                     </Grid>

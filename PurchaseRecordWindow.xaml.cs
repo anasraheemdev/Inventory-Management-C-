@@ -29,9 +29,28 @@ namespace FinalDB
 
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //  Handle the button click here (e.g., navigate to another window)
+            MessageBox.Show("Button_Click event triggered!");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            //  Handle the button click here
+            MessageBox.Show("Button_Click_1 event triggered!");
+        }
+
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            //  Handle the button click here
+            MessageBox.Show("Button_Click_2 event triggered!");
+        }
 
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //  Handle the button click here
+            MessageBox.Show("Button_Click_3 event triggered!");
         }
     }
 }
