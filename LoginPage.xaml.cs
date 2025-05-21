@@ -42,6 +42,9 @@ namespace FinalDB
             // {
             //     MessageBox.Show("Invalid username or password.", "Login Error", MessageBoxButton.OK, MessageBoxImage.Error);
             // }
+            MainWindow mainWindow = new MainWindow(); // Replace MainWindow with your actual next window
+            mainWindow.Show();
+            this.Close();
         }
     }
 }

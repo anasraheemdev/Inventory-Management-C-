@@ -65,11 +65,11 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="6" 
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center" 
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
                                               Margin="{TemplateBinding Padding}"/>
                         </Border>
                     </ControlTemplate>
@@ -190,7 +190,7 @@
 
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10,20,10,0">
-                        <Button Style="{StaticResource MenuButtonStyle}" Name="DashboardButton" Click="DashboardButton_Click">
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="DashboardButton_Invoice" Click="DashboardButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Dashboard" FontWeight="SemiBold"/>
@@ -198,13 +198,13 @@
                         </Button>
 
                         <TextBlock Text="CASHIER" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
-                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF" Name="MakeInvoiceButton" Click="MakeInvoiceButton_Click">
+                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF" Name="MakeInvoiceButton_Invoice" Click="MakeInvoiceButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Make Invoice"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}" Name="TransactionButton" Click="TransactionButton_Click" RenderTransformOrigin="-0.575,-0.358">
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="TransactionButton_Invoice" Click="TransactionButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8FA;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Transaction"/>
@@ -212,67 +212,106 @@
                         </Button>
 
                         <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
-                        <Button Style="{StaticResource MenuButtonStyle}" Name="InventoryAddItemButton" Click="InventoryAddItemButton_Click">
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="InventoryAddItemButton_Invoice" Click="AddItemButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Add Item"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}" Name="PurchaseOrderButton" Click="PurchaseOrderButton_Click">
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="ProductsListButton_Invoice" Click="ProductsListButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Purchase Order"/>
+                                <TextBlock Text="Products List"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}" Name="PurchaseRecordButton" Click="PurchaseRecordButton_Click">
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="PurchaseRecordButton_Invoice" Click="PurchaseRecordButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Purchase Record"/>
                             </StackPanel>
                         </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="StockTrackingButton_Invoice" Click="StockTrackingButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE878;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Stock Tracking"/>
+                            </StackPanel>
+                        </Button>
 
-                        <Expander Header="More Inventory" Foreground="#9DC3F5" Margin="10,10,0,0" 
+                        <Expander Header="More Inventory" Foreground="#9DC3F5" Margin="10,10,0,0"
                                   Background="Transparent" BorderThickness="0">
                             <StackPanel>
-                                <Button Style="{StaticResource MenuButtonStyle}" Name="CategoryButton" Click="CategoryButton_Click">
+                                <Button Style="{StaticResource MenuButtonStyle}" Name="CategoryButton_Invoice" Click="CategoryButton_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                         <TextBlock Text="Category"/>
                                     </StackPanel>
                                 </Button>
-                                <Button Style="{StaticResource MenuButtonStyle}" Name="BrandButton" Click="BrandButton_Click">
+                                <Button Style="{StaticResource MenuButtonStyle}" Name="BrandButton_Invoice" Click="BrandButton_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                         <TextBlock Text="Brand"/>
                                     </StackPanel>
                                 </Button>
-                                <Button Style="{StaticResource MenuButtonStyle}" Name="UnitsButton" Click="UnitsButton_Click">
+                                <Button Style="{StaticResource MenuButtonStyle}" Name="UnitsButton_Invoice" Click="UnitsButton_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="&#xE8EF;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                         <TextBlock Text="Units"/>
                                     </StackPanel>
                                 </Button>
-                                <Button Style="{StaticResource MenuButtonStyle}" Name="SupplierButton" Click="SupplierButton_Click">
+                                <Button Style="{StaticResource MenuButtonStyle}" Name="SupplierButton_Invoice" Click="SupplierButton_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                         <TextBlock Text="Supplier"/>
                                     </StackPanel>
                                 </Button>
-                                <Button Style="{StaticResource MenuButtonStyle}" Name="IssuedButton" Click="IssuedButton_Click">
+                                <Button Style="{StaticResource MenuButtonStyle}" Name="IssuedButton_Invoice" Click="IssuedButton_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                        <TextBlock Text="Issued"/>
+                                        <TextBlock Text="Issued (Stock)"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}" Name="MasterPriceButton_Invoice" Click="MasterPriceButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8CB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Master Price"/>
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
                         </Expander>
 
-                        <Button Style="{StaticResource MenuButtonStyle}" Margin="0,20,0,0" Name="UserManagerButton" Click="UserManagerButton_Click">
+                        <TextBlock Text="ADMINISTRATION" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="AddCashierButton_Invoice" Click="AddCashierButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE779;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="User Manager"/>
+                                <TextBlock Text="Add Cashier"/>
                             </StackPanel>
                         </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="LoginAsAdminButton_Invoice" Click="LoginAsAdminButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE779;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Admin Login"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="LoginPageButton_Invoice" Click="LoginPageButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE72B;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Login Page"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="HomeLoginAsButton_Invoice" Click="HomeLoginAsButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Home (Login As)"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Name="EditProductButton_Invoice" Click="EditProductButton_Click" Margin="0,20,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Edit Product (Example)"/>
+                            </StackPanel>
+                        </Button>
+
                     </StackPanel>
                 </ScrollViewer>
 
@@ -388,7 +427,7 @@
 
                             <TextBlock Grid.Row="0" Text="Invoice Items" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10" Foreground="#1E5AAF"/>
 
-                            <DataGrid Grid.Row="1" Name="InvoiceItemsGrid" 
+                            <DataGrid Grid.Row="1" Name="InvoiceItemsGrid"
                                       Style="{StaticResource DataGridStyle}"
                                       ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
                                       MinHeight="150">

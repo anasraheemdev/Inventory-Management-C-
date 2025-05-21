@@ -51,8 +51,6 @@ C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\refint\FinalDB.dl
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB.pdb
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB.csproj.AssemblyReference.cache
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB_Content.g.cs
-C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\test.g.cs
-C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 C:\Users\New Moon\Desktop\DB1\FinalDB\bin\Debug\net8.0-windows\runtimes\win-x86\native\WebView2Loader.dll
 C:\Users\New Moon\Desktop\DB1\FinalDB\bin\Debug\net8.0-windows\runtimes\win-x64\native\WebView2Loader.dll
 C:\Users\New Moon\Desktop\DB1\FinalDB\bin\Debug\net8.0-windows\runtimes\win-arm64\native\WebView2Loader.dll
@@ -74,7 +72,6 @@ C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\LoginPage.baml
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\MainWindow.baml
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\ProductsPage.baml
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\PurchaseRecordWindow.baml
-C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\test.baml
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB.g.resources
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB.AssemblyInfoInputs.cache
@@ -84,3 +81,9 @@ C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB.sourcelin
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB.csproj.Up2Date
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\FinalDB.genruntimeconfig.cache
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\ref\FinalDB.dll
+C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\editProduct.g.cs
+C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\HomeLoginAs.g.cs
+C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\LoginAsAdmin.g.cs
+C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\editProduct.baml
+C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\HomeLoginAs.baml
+C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\LoginAsAdmin.baml

@@ -8,7 +8,16 @@
     <Compile Update="AddProductPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="editProduct.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="HomeLoginAs.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Invoice.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="LoginAsAdmin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="LoginPage.xaml.cs">
@@ -21,9 +30,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="StockTrackingWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="test.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

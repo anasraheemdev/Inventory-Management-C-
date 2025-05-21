@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" Title="Stock Tracking" Height="720" Width="1280"
+        mc:Ignorable="d" Title="SULTANI POS - Stock Tracking" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <!-- Consolidated styles with fewer properties -->
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -69,7 +68,6 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Common colors as resources -->
         <SolidColorBrush x:Key="PrimaryBlue" Color="#1E5AAF"/>
         <SolidColorBrush x:Key="DarkBlue" Color="#1648A0"/>
         <SolidColorBrush x:Key="LightBlue" Color="#9DC3F5"/>
@@ -82,7 +80,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Sidebar -->
         <Border Background="{StaticResource PrimaryBlue}" BorderBrush="{StaticResource DarkBlue}" BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
@@ -91,91 +88,139 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- Logo -->
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
                     <TextBlock Text="SULTA" FontSize="22" FontWeight="Bold" Foreground="White"/>
                     <TextBlock Text="NI" FontSize="22" FontWeight="Bold" Foreground="{StaticResource AccentBlue}"/>
                     <TextBlock Text=" POS" FontSize="16" Foreground="{StaticResource LightBlue}" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
                 </StackPanel>
 
-                <!-- Menu Items -->
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10,20,10,0">
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="DashboardButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Dashboard"/>
+                                <TextBlock Text="Dashboard" FontWeight="SemiBold"/>
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF">
+                        <TextBlock Text="CASHIER" Margin="15,20,0,5" Foreground="{StaticResource LightBlue}" FontSize="12" FontWeight="SemiBold"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="MakeInvoiceButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Make Invoice"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="TransactionButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8FA;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Transaction"/>
+                            </StackPanel>
+                        </Button>
+
+                        <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="{StaticResource LightBlue}" FontSize="12" FontWeight="SemiBold"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="AddProductButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Add Item"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="ProductsButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Products List"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="PurchaseRecordButton_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Purchase Record"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF" Click="StockTrackingButton_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE878;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Stock Tracking" FontWeight="SemiBold"/>
                             </StackPanel>
                         </Button>
 
-                        <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="{StaticResource LightBlue}" FontSize="12" FontWeight="SemiBold"/>
+                        <Expander Header="More Inventory" Foreground="{StaticResource LightBlue}" Margin="10,10,0,0" 
+                                  Background="Transparent" BorderThickness="0">
+                            <StackPanel>
+                                <Button Style="{StaticResource MenuButtonStyle}" Click="CategoryButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Category"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}" Click="BrandButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Brand"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}" Click="UnitsButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8EF;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Units"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}" Click="SupplierButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Supplier"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}" Click="IssuedButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Issued (Stock)"/>
+                                    </StackPanel>
+                                </Button>
+                                <Button Style="{StaticResource MenuButtonStyle}" Click="MasterPriceButton_Click">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE8CB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                        <TextBlock Text="Master Price"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Expander>
 
-                        <!-- Combined menu items with compact syntax -->
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <TextBlock Text="ADMINISTRATION" Margin="15,20,0,5" Foreground="{StaticResource LightBlue}" FontSize="12" FontWeight="SemiBold"/>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="AddCashierButton_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Add Item"/>
+                                <TextBlock Text="&#xE779;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Add Cashier"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="LoginAsAdminButton_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8FD;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Category"/>
+                                <TextBlock Text="&#xE779;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Admin Login"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="LoginPageButton_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8EC;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Brand"/>
+                                <TextBlock Text="&#xE72B;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Login Page"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="HomeLoginAsButton_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8EF;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Units"/>
+                                <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Home (Login As)"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="EditProductButton_Click" Margin="0,20,0,0">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8CB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Master Price"/>
+                                <TextBlock Text="&#xE70F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Edit Product (Example)"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Purchase Order"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8C8;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Supplier"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Receive"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE8F3;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Issued"/>
-                            </StackPanel>
-                        </Button>
+
                     </StackPanel>
                 </ScrollViewer>
 
-                <!-- User Profile -->
                 <Border Grid.Row="2" Background="#174B92" BorderBrush="#144283" BorderThickness="0,1,0,0" Padding="15,12">
                     <StackPanel Orientation="Horizontal">
                         <Border Width="36" Height="36" Background="{StaticResource AccentBlue}" CornerRadius="18">
@@ -190,14 +235,12 @@
             </Grid>
         </Border>
 
-        <!-- Main Content -->
         <Grid Grid.Column="1" Background="#F6F9FC">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Header -->
             <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -205,15 +248,14 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Text="STOCK TRACKING" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" 
-                              Margin="25,0,0,0" Foreground="{StaticResource PrimaryBlue}"/>
+                               Margin="25,0,0,0" Foreground="{StaticResource PrimaryBlue}"/>
                     <Border Grid.Column="1" Background="{StaticResource PrimaryBlue}" CornerRadius="6" 
-                           Padding="15,8" Margin="0,0,25,0" Height="42">
+                            Padding="15,8" Margin="0,0,25,0" Height="42">
                         <TextBlock Text="2024" FontSize="20" FontWeight="Bold" Foreground="White"/>
                     </Border>
                 </Grid>
             </Border>
 
-            <!-- Dashboard Content -->
             <Grid Grid.Row="1" Margin="25,15,25,25">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -221,11 +263,10 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Tabs -->
                 <Border Grid.Row="0" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1" Padding="0,0,0,12">
                     <StackPanel Orientation="Horizontal">
                         <Button Style="{StaticResource TabButtonStyle}" Background="{StaticResource PrimaryBlue}" 
-                               Foreground="White" FontWeight="SemiBold">
+                                Foreground="White" FontWeight="SemiBold">
                             <TextBlock Text="General"/>
                         </Button>
                         <Button Style="{StaticResource TabButtonStyle}" Margin="10,0,0,0">
@@ -234,7 +275,6 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Metric Cards -->
                 <Grid Grid.Row="1" Margin="0,20,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -243,7 +283,6 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- Total Items Card -->
                     <Border Grid.Column="0" Style="{StaticResource MetricCardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -260,12 +299,11 @@
                             </StackPanel>
                             <Border Grid.Column="1" Width="45" Height="45" Background="#EBF5FF" CornerRadius="22" VerticalAlignment="Top">
                                 <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource PrimaryBlue}" 
-                                          FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
 
-                    <!-- Items In Stock Card -->
                     <Border Grid.Column="1" Style="{StaticResource MetricCardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -282,12 +320,11 @@
                             </StackPanel>
                             <Border Grid.Column="1" Width="45" Height="45" Background="#E8F5E9" CornerRadius="22" VerticalAlignment="Top">
                                 <TextBlock Text="&#xE8EB;" FontFamily="Segoe MDL2 Assets" Foreground="#4CAF50" 
-                                          FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
 
-                    <!-- Low Stock Items Card -->
                     <Border Grid.Column="2" Style="{StaticResource MetricCardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -304,12 +341,11 @@
                             </StackPanel>
                             <Border Grid.Column="1" Width="45" Height="45" Background="#FFEBEE" CornerRadius="22" VerticalAlignment="Top">
                                 <TextBlock Text="&#xE8F2;" FontFamily="Segoe MDL2 Assets" Foreground="#F44336" 
-                                          FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
 
-                    <!-- Out of Stock Items Card -->
                     <Border Grid.Column="3" Style="{StaticResource MetricCardStyle}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -326,20 +362,18 @@
                             </StackPanel>
                             <Border Grid.Column="1" Width="45" Height="45" Background="#FFEBEE" CornerRadius="22" VerticalAlignment="Top">
                                 <TextBlock Text="&#xE10B;" FontFamily="Segoe MDL2 Assets" Foreground="#F44336" 
-                                          FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
                 </Grid>
 
-                <!-- Charts and Tables -->
                 <Grid Grid.Row="2" Margin="0,22,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Stock Level Chart -->
                     <Border Grid.Row="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" Padding="18" Background="White">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
@@ -365,7 +399,6 @@
                         </Grid>
                     </Border>
 
-                    <!-- Bottom Three Cards -->
                     <Grid Grid.Row="1" Margin="0,18,0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -373,9 +406,8 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Latest Stock Receipts -->
                         <Border Grid.Column="0" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" 
-                               Padding="18" Background="White" Margin="0,0,9,0">
+                                Padding="18" Background="White" Margin="0,0,9,0">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
                             </Border.Effect>
@@ -385,14 +417,13 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Text="Latest Stock Receipts" FontSize="18" 
-                                          FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                            FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
                                 <StackPanel Grid.Row="1" />
                             </Grid>
                         </Border>
 
-                        <!-- Latest Stock Issued -->
                         <Border Grid.Column="1" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" 
-                               Padding="18" Background="White" Margin="9,0,9,0">
+                                Padding="18" Background="White" Margin="9,0,9,0">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
                             </Border.Effect>
@@ -402,14 +433,13 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Text="Latest Stock Issued" FontSize="18" 
-                                          FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                            FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
                                 <StackPanel Grid.Row="1" />
                             </Grid>
                         </Border>
 
-                        <!-- Low Stock Items -->
                         <Border Grid.Column="2" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="10" 
-                               Padding="18" Background="White" Margin="9,0,0,0">
+                                Padding="18" Background="White" Margin="9,0,0,0">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="10" ShadowDepth="1" Opacity="0.1" Color="#000000"/>
                             </Border.Effect>
@@ -419,7 +449,7 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0" Text="Low Stock Items" FontSize="18" 
-                                          FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                            FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
                                 <StackPanel Grid.Row="1" />
                             </Grid>
                         </Border>

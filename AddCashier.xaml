@@ -9,7 +9,6 @@
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
-        <!-- Common styles - matching the reference UI styles -->
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="Foreground" Value="White"/>
@@ -43,11 +42,11 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" 
-                                CornerRadius="6" 
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="6"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center" 
-                                              VerticalAlignment="Center" 
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
                                               Margin="{TemplateBinding Padding}"/>
                         </Border>
                     </ControlTemplate>
@@ -102,13 +101,13 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="TextBox">
-                        <Border Background="{TemplateBinding Background}" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
-                                BorderThickness="{TemplateBinding BorderThickness}" 
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
                                 CornerRadius="6">
-                            <ScrollViewer x:Name="PART_ContentHost" 
-                                         Margin="{TemplateBinding Padding}" 
-                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -135,7 +134,6 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Left Sidebar -->
         <Border Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0,0,1,0">
             <Grid>
                 <Grid.RowDefinitions>
@@ -144,17 +142,15 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!-- Logo -->
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="20,0,0,0" VerticalAlignment="Center">
                     <TextBlock Text="SULTA" FontSize="22" FontWeight="Bold" Foreground="White"/>
                     <TextBlock Text="NI" FontSize="22" FontWeight="Bold" Foreground="#3CEFFF"/>
                     <TextBlock Text=" POS" FontSize="16" Foreground="#9DC3F5" VerticalAlignment="Bottom" Margin="5,0,0,2"/>
                 </StackPanel>
 
-                <!-- Sidebar Menu -->
                 <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                     <StackPanel Margin="10,20,10,0">
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Dashboard_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Dashboard" FontWeight="SemiBold"/>
@@ -162,13 +158,13 @@
                         </Button>
 
                         <TextBlock Text="CASHIER" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="MakeInvoice_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8F1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Make Invoice"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Transaction_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8FA;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Transaction"/>
@@ -176,19 +172,19 @@
                         </Button>
 
                         <TextBlock Text="INVENTORY" Margin="15,20,0,5" Foreground="#9DC3F5" FontSize="12" FontWeight="SemiBold"/>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="AddItem_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8C9;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Add Item"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="PurchaseOrder_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8A1;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Purchase Order"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="PurchaseRecord_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Purchase Record"/>
@@ -202,18 +198,17 @@
                                 <TextBlock Text="Cashiers"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource MenuButtonStyle}">
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="Administrators_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE115;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                 <TextBlock Text="Administrators"/>
                             </StackPanel>
                         </Button>
 
-                        <!-- Optional: Add an expander for more menu items -->
-                        <Expander Header="More Options" Foreground="#9DC3F5" Margin="10,10,0,0" 
+                        <Expander Header="More Options" Foreground="#9DC3F5" Margin="10,10,0,0"
                                   Background="Transparent" BorderThickness="0">
                             <StackPanel>
-                                <Button Style="{StaticResource MenuButtonStyle}">
+                                <Button Style="{StaticResource MenuButtonStyle}" Click="UserManager_Click">
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="&#xE779;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
                                         <TextBlock Text="User Manager"/>
@@ -224,7 +219,6 @@
                     </StackPanel>
                 </ScrollViewer>
 
-                <!-- User Info Section -->
                 <Border Grid.Row="2" Background="#174B92" BorderBrush="#144283" BorderThickness="0,1,0,0" Padding="15,12">
                     <StackPanel Orientation="Horizontal">
                         <Border Width="36" Height="36" Background="#3CEFFF" CornerRadius="18">
@@ -239,14 +233,12 @@
             </Grid>
         </Border>
 
-        <!-- Main Content Area -->
         <Grid Grid.Column="1" Background="#F6F9FC">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Top Bar -->
             <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="0,0,0,1">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -257,7 +249,7 @@
                     <TextBlock Text="ADD NEW CASHIER" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0" Foreground="#1E5AAF"/>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,25,0">
-                        <Button Style="{StaticResource PrimaryButtonStyle}" Height="40">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Height="40" Click="ViewAllCashiers_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE74E;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
                                 <TextBlock Text="View All"/>
@@ -267,7 +259,6 @@
                 </Grid>
             </Border>
 
-            <!-- Cashier Form Content -->
             <Grid Grid.Row="1" Margin="25,15,25,25">
                 <Border Style="{StaticResource CardBorderStyle}" Padding="20">
                     <Grid>
@@ -277,13 +268,11 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <!-- Form Header -->
                         <StackPanel Grid.Row="0" Margin="0,0,0,20">
                             <TextBlock Text="Cashier Information" FontSize="18" FontWeight="SemiBold" Foreground="#1E5AAF"/>
                             <TextBlock Text="Please fill all required fields marked with *" FontSize="12" Foreground="#6E6E6E" Margin="0,5,0,0"/>
                         </StackPanel>
 
-                        <!-- Form Fields -->
                         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -291,58 +280,49 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!-- Left Column -->
                                 <StackPanel Grid.Column="0" Margin="0,0,15,0">
-                                    <!-- Profile Image -->
                                     <StackPanel Margin="0,0,0,20">
                                         <TextBlock Text="Profile Image" Style="{StaticResource FormLabelStyle}"/>
                                         <Grid>
-                                            <Border Width="100" Height="100" Background="#F0F5FF" BorderBrush="#D8E3F4" 
+                                            <Border Width="100" Height="100" Background="#F0F5FF" BorderBrush="#D8E3F4"
                                                     BorderThickness="1" CornerRadius="50" Margin="0,10,0,0">
-                                                <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" FontSize="36" 
+                                                <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" FontSize="36"
                                                            HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#1E5AAF"/>
                                             </Border>
-                                            <Button Style="{StaticResource PrimaryButtonStyle}" Width="32" Height="32" 
+                                            <Button Style="{StaticResource PrimaryButtonStyle}" Width="32" Height="32"
                                                     HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="75,0,0,0" Padding="0">
                                                 <TextBlock Text="&#xE722;" FontFamily="Segoe MDL2 Assets"/>
                                             </Button>
                                         </Grid>
                                     </StackPanel>
 
-                                    <!-- Employee ID -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Employee ID *" Style="{StaticResource FormLabelStyle}"/>
                                         <TextBox Style="{StaticResource InputBoxStyle}" Text="CASH-0024" Height="36"/>
                                     </StackPanel>
 
-                                    <!-- Full Name -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Full Name *" Style="{StaticResource FormLabelStyle}"/>
                                         <TextBox Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
 
-                                    <!-- Email -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Email Address *" Style="{StaticResource FormLabelStyle}"/>
                                         <TextBox Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
 
-                                    <!-- Phone -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Phone Number *" Style="{StaticResource FormLabelStyle}"/>
                                         <TextBox Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
 
-                                    <!-- Username -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Username *" Style="{StaticResource FormLabelStyle}"/>
                                         <TextBox Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
                                 </StackPanel>
 
-                                <!-- Right Column -->
                                 <StackPanel Grid.Column="1" Margin="15,0,0,0">
-                                    <!-- Gender -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Gender" Style="{StaticResource FormLabelStyle}"/>
                                         <ComboBox Style="{StaticResource ComboBoxStyle}" Height="36">
@@ -353,7 +333,6 @@
                                         </ComboBox>
                                     </StackPanel>
 
-                                    <!-- Date of Birth -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Date of Birth" Style="{StaticResource FormLabelStyle}"/>
                                         <DatePicker Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1">
@@ -365,18 +344,16 @@
                                         </DatePicker>
                                     </StackPanel>
 
-                                    <!-- Address -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Address" Style="{StaticResource FormLabelStyle}"/>
-                                        <TextBox Style="{StaticResource InputBoxStyle}" Height="80" 
-                                                 TextWrapping="Wrap" AcceptsReturn="True" 
+                                        <TextBox Style="{StaticResource InputBoxStyle}" Height="80"
+                                                 TextWrapping="Wrap" AcceptsReturn="True"
                                                  VerticalContentAlignment="Top"/>
                                     </StackPanel>
 
-                                    <!-- Password -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Password *" Style="{StaticResource FormLabelStyle}"/>
-                                        <PasswordBox Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1" 
+                                        <PasswordBox Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1"
                                                      VerticalContentAlignment="Center">
                                             <PasswordBox.Resources>
                                                 <Style TargetType="{x:Type Border}">
@@ -386,10 +363,9 @@
                                         </PasswordBox>
                                     </StackPanel>
 
-                                    <!-- Confirm Password -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Confirm Password *" Style="{StaticResource FormLabelStyle}"/>
-                                        <PasswordBox Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1" 
+                                        <PasswordBox Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1"
                                                      VerticalContentAlignment="Center">
                                             <PasswordBox.Resources>
                                                 <Style TargetType="{x:Type Border}">
@@ -399,7 +375,6 @@
                                         </PasswordBox>
                                     </StackPanel>
 
-                                    <!-- Status -->
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Status *" Style="{StaticResource FormLabelStyle}"/>
                                         <ComboBox Style="{StaticResource ComboBoxStyle}" Height="36">
@@ -411,10 +386,9 @@
                             </Grid>
                         </ScrollViewer>
 
-                        <!-- Action Buttons -->
                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-                            <Button Style="{StaticResource SecondaryButtonStyle}" Content="Cancel" Width="120" Height="40" Margin="0,0,15,0"/>
-                            <Button Style="{StaticResource PrimaryButtonStyle}" Width="120" Height="40">
+                            <Button Style="{StaticResource SecondaryButtonStyle}" Content="Cancel" Width="120" Height="40" Margin="0,0,15,0" Click="Cancel_Click"/>
+                            <Button Style="{StaticResource PrimaryButtonStyle}" Width="120" Height="40" Click="SaveCashier_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
                                     <TextBlock Text="Save"/>
