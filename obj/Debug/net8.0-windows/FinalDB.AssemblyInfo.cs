@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FinalDB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1c4793aca0863a9f475424474976b5240c39e2e8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6d61e962b4b99ea4d2edb8c27e5771a775504ceb")]
 [assembly: System.Reflection.AssemblyProductAttribute("FinalDB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FinalDB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
