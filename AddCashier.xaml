@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalDB"
         mc:Ignorable="d"
-        Title="SULTANI POS - Add Cashier" Height="720" Width="1280"
+        Title="SULTANI POS - Add User" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -195,7 +195,7 @@
                         <Button Style="{StaticResource MenuButtonStyle}" Background="#3672CF">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Cashiers"/>
+                                <TextBlock Text="Add User"/>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource MenuButtonStyle}" Click="Administrators_Click">
@@ -246,13 +246,13 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Text="ADD NEW CASHIER" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0" Foreground="#1E5AAF"/>
+                    <TextBlock Text="ADD NEW USER" FontSize="22" FontWeight="Bold" VerticalAlignment="Center" Margin="25,0,0,0" Foreground="#1E5AAF"/>
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,25,0">
-                        <Button Style="{StaticResource PrimaryButtonStyle}" Height="40" Click="ViewAllCashiers_Click">
+                        <Button Style="{StaticResource PrimaryButtonStyle}" Height="40" Click="ViewAllUsers_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE74E;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
-                                <TextBlock Text="View All"/>
+                                <TextBlock Text="View All Users"/>
                             </StackPanel>
                         </Button>
                     </StackPanel>
@@ -269,7 +269,7 @@
                         </Grid.RowDefinitions>
 
                         <StackPanel Grid.Row="0" Margin="0,0,0,20">
-                            <TextBlock Text="Cashier Information" FontSize="18" FontWeight="SemiBold" Foreground="#1E5AAF"/>
+                            <TextBlock Text="User Information" FontSize="18" FontWeight="SemiBold" Foreground="#1E5AAF"/>
                             <TextBlock Text="Please fill all required fields marked with *" FontSize="12" Foreground="#6E6E6E" Margin="0,5,0,0"/>
                         </StackPanel>
 
@@ -285,47 +285,62 @@
                                         <TextBlock Text="Profile Image" Style="{StaticResource FormLabelStyle}"/>
                                         <Grid>
                                             <Border Width="100" Height="100" Background="#F0F5FF" BorderBrush="#D8E3F4"
-                                                    BorderThickness="1" CornerRadius="50" Margin="0,10,0,0">
-                                                <TextBlock Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" FontSize="36"
-                                                           HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#1E5AAF"/>
+                    BorderThickness="1" CornerRadius="50" Margin="0,10,0,0"
+                    ClipToBounds="True">
+                                                <Grid>
+                                                    <Image x:Name="imgProfile" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center"
+                           RenderOptions.BitmapScalingMode="HighQuality" Visibility="Collapsed"/>
+                                                    <TextBlock x:Name="txtProfileIcon" Text="&#xE77B;" FontFamily="Segoe MDL2 Assets" FontSize="36"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#1E5AAF"
+                               Visibility="Visible"/>
+                                                </Grid>
                                             </Border>
-                                            <Button Style="{StaticResource PrimaryButtonStyle}" Width="32" Height="32"
-                                                    HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="75,0,0,0" Padding="0">
+                                            <Button x:Name="btnSelectImage" Style="{StaticResource PrimaryButtonStyle}" Width="32" Height="32"
+                    HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="75,0,0,0" Padding="0"
+                    Click="SelectImage_Click">
                                                 <TextBlock Text="&#xE722;" FontFamily="Segoe MDL2 Assets"/>
                                             </Button>
                                         </Grid>
                                     </StackPanel>
-
                                     <StackPanel Margin="0,0,0,15">
-                                        <TextBlock Text="Employee ID *" Style="{StaticResource FormLabelStyle}"/>
-                                        <TextBox Style="{StaticResource InputBoxStyle}" Text="CASH-0024" Height="36"/>
+                                        <TextBlock Text="User ID *" Style="{StaticResource FormLabelStyle}"/>
+                                        <TextBox x:Name="txtUserId" Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Full Name *" Style="{StaticResource FormLabelStyle}"/>
-                                        <TextBox Style="{StaticResource InputBoxStyle}" Height="36"/>
+                                        <TextBox x:Name="txtFullName" Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Email Address *" Style="{StaticResource FormLabelStyle}"/>
-                                        <TextBox Style="{StaticResource InputBoxStyle}" Height="36"/>
+                                        <TextBox x:Name="txtEmailAddress" Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Phone Number *" Style="{StaticResource FormLabelStyle}"/>
-                                        <TextBox Style="{StaticResource InputBoxStyle}" Height="36"/>
+                                        <TextBox x:Name="txtPhoneNumber" Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Username *" Style="{StaticResource FormLabelStyle}"/>
-                                        <TextBox Style="{StaticResource InputBoxStyle}" Height="36"/>
+                                        <TextBox x:Name="txtUsername" Style="{StaticResource InputBoxStyle}" Height="36"/>
                                     </StackPanel>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1" Margin="15,0,0,0">
                                     <StackPanel Margin="0,0,0,15">
+                                        <TextBlock Text="User Role *" Style="{StaticResource FormLabelStyle}"/>
+                                        <ComboBox x:Name="cmbUserRole" Style="{StaticResource ComboBoxStyle}" Height="36">
+                                            <ComboBoxItem Content="Select Role" IsSelected="True"/>
+                                            <ComboBoxItem Content="Cashier"/>
+                                            <ComboBoxItem Content="Admin"/>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Gender" Style="{StaticResource FormLabelStyle}"/>
-                                        <ComboBox Style="{StaticResource ComboBoxStyle}" Height="36">
+                                        <ComboBox x:Name="cmbGender" Style="{StaticResource ComboBoxStyle}" Height="36">
                                             <ComboBoxItem Content="Select Gender" IsSelected="True"/>
                                             <ComboBoxItem Content="Male"/>
                                             <ComboBoxItem Content="Female"/>
@@ -335,7 +350,7 @@
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Date of Birth" Style="{StaticResource FormLabelStyle}"/>
-                                        <DatePicker Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1">
+                                        <DatePicker x:Name="dpDateOfBirth" Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1">
                                             <DatePicker.Resources>
                                                 <Style TargetType="{x:Type Border}">
                                                     <Setter Property="CornerRadius" Value="6"/>
@@ -346,14 +361,14 @@
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Address" Style="{StaticResource FormLabelStyle}"/>
-                                        <TextBox Style="{StaticResource InputBoxStyle}" Height="80"
+                                        <TextBox x:Name="txtAddress" Style="{StaticResource InputBoxStyle}" Height="80"
                                                  TextWrapping="Wrap" AcceptsReturn="True"
                                                  VerticalContentAlignment="Top"/>
                                     </StackPanel>
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Password *" Style="{StaticResource FormLabelStyle}"/>
-                                        <PasswordBox Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1"
+                                        <PasswordBox x:Name="pwdPassword" Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1"
                                                      VerticalContentAlignment="Center">
                                             <PasswordBox.Resources>
                                                 <Style TargetType="{x:Type Border}">
@@ -365,7 +380,7 @@
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Confirm Password *" Style="{StaticResource FormLabelStyle}"/>
-                                        <PasswordBox Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1"
+                                        <PasswordBox x:Name="pwdConfirmPassword" Height="36" Padding="10,5" BorderBrush="#E0E0E0" BorderThickness="1"
                                                      VerticalContentAlignment="Center">
                                             <PasswordBox.Resources>
                                                 <Style TargetType="{x:Type Border}">
@@ -377,9 +392,10 @@
 
                                     <StackPanel Margin="0,0,0,15">
                                         <TextBlock Text="Status *" Style="{StaticResource FormLabelStyle}"/>
-                                        <ComboBox Style="{StaticResource ComboBoxStyle}" Height="36">
+                                        <ComboBox x:Name="cmbStatus" Style="{StaticResource ComboBoxStyle}" Height="36">
                                             <ComboBoxItem Content="Active" IsSelected="True"/>
                                             <ComboBoxItem Content="Inactive"/>
+                                            <ComboBoxItem Content="Suspended"/>
                                         </ComboBox>
                                     </StackPanel>
                                 </StackPanel>
@@ -388,7 +404,7 @@
 
                         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
                             <Button Style="{StaticResource SecondaryButtonStyle}" Content="Cancel" Width="120" Height="40" Margin="0,0,15,0" Click="Cancel_Click"/>
-                            <Button Style="{StaticResource PrimaryButtonStyle}" Width="120" Height="40" Click="SaveCashier_Click">
+                            <Button Style="{StaticResource PrimaryButtonStyle}" Width="120" Height="40" Click="SaveUser_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
                                     <TextBlock Text="Save"/>
