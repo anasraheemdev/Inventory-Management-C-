@@ -6,20 +6,16 @@ using System.Windows.Controls;
 
 namespace FinalDB
 {
-    /// <summary>
-    /// Interaction logic for ViewAllUsersWindow.xaml
-    /// </summary>
+
     public partial class ViewAllUsersWindow : Window
     {
-        // --- Database Connection String ---
-        // IMPORTANT: Using 'root' with a password directly in code is NOT recommended for production apps.
-        // Create a dedicated MySQL user with minimal required privileges for your application.
+        // --- Database Connection String 
         private const string ConnectionString =
-            "Server=localhost;" +          // Your MySQL server address (e.g., localhost, IP address)
-            "Port=3306;" +                 // MySQL port (default is 3306)
-            "Database=sultani;" +          // The database name you provided: 'sultani'
-            "Uid=root;" +                  // Your MySQL user (e.g., root)
-            "Pwd=anas786MALIK@;";          // Your MySQL user's password (replace with your actual strong password)
+            "Server=localhost;" +          
+            "Port=3306;" +                 
+            "Database=sultani;" +          
+            "Uid=root;" +                  
+            "Pwd=anas786MALIK@;";         
 
         public ViewAllUsersWindow()
         {
@@ -27,18 +23,13 @@ namespace FinalDB
             PageTitle.Text = "VIEW ALL USERS"; // Set initial title for this specific window
         }
 
-        /// <summary>
-        /// Event handler for when the window is loaded.
-        /// Calls the method to load user data into the DataGrid.
-        /// </summary>
+        
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             LoadUsersData();
         }
 
-        /// <summary>
-        /// Fetches all user data from the MySQL database and populates the DataGrid.
-        /// </summary>
+
         private void LoadUsersData()
         {
             DataTable usersDataTable = new DataTable();

@@ -3,6 +3,38 @@
   "WorkspaceRootPath": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\editproduct.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:editproduct.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\editproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:editproduct.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\productspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:productspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\productspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:productspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\addproductpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:addproductpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\addproductpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:addproductpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\viewalluserswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:viewalluserswindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,10 +51,6 @@
       "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|c:\\users\\new moon\\desktop\\db1\\finaldb\\addcashier.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:addcashier.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
@@ -34,11 +62,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "AddCashier.xaml",
               "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddCashier.xaml",
               "RelativeDocumentMoniker": "AddCashier.xaml",
@@ -46,32 +74,32 @@
               "RelativeToolTip": "AddCashier.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-03-21T00:57:14.977Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAAAIkAAAABAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Models\\Product.cs",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\Models\\Product.cs*",
+              "RelativeToolTip": "Models\\Product.cs*",
+              "ViewState": "AgIAAB8BAAAAAAAAAAAAADMBAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T20:34:43.974Z",
+              "WhenOpened": "2025-05-25T23:15:45.641Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-24T20:34:41.298Z",
+              "DocumentIndex": 1,
+              "Title": "editProduct.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\editProduct.xaml.cs",
+              "RelativeDocumentMoniker": "editProduct.xaml.cs",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\editProduct.xaml.cs",
+              "RelativeToolTip": "editProduct.xaml.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAqwLoAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T23:01:00.043Z",
               "EditorCaption": ""
             },
             {
@@ -84,32 +112,117 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
+              "Title": "ProductsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ProductsPage.xaml.cs",
+              "RelativeDocumentMoniker": "ProductsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ProductsPage.xaml.cs",
+              "RelativeToolTip": "ProductsPage.xaml.cs",
+              "ViewState": "AgIAAAgBAAAAAAAAAAAAABYBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T08:23:34.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ProductsPage.xaml",
+              "RelativeDocumentMoniker": "ProductsPage.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ProductsPage.xaml",
+              "RelativeToolTip": "ProductsPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-25T08:12:34.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "editProduct.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\editProduct.xaml",
+              "RelativeDocumentMoniker": "editProduct.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\editProduct.xaml",
+              "RelativeToolTip": "editProduct.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-25T08:12:13.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddProductPage.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddProductPage.xaml",
+              "RelativeDocumentMoniker": "AddProductPage.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddProductPage.xaml",
+              "RelativeToolTip": "AddProductPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-25T05:39:43.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AddProductPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddProductPage.xaml.cs",
+              "RelativeDocumentMoniker": "AddProductPage.xaml.cs",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddProductPage.xaml.cs",
+              "RelativeToolTip": "AddProductPage.xaml.cs",
+              "ViewState": "AgIAAJsBAAAAAAAAAAAUwJwBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T05:39:29.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAAAIkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-24T20:34:43.974Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-24T20:34:41.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ViewAllUsersWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ViewAllUsersWindow.xaml.cs",
               "RelativeDocumentMoniker": "ViewAllUsersWindow.xaml.cs",
               "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ViewAllUsersWindow.xaml.cs",
               "RelativeToolTip": "ViewAllUsersWindow.xaml.cs",
-              "ViewState": "AgIAAK4AAAAAAAAAAAAxwMMAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAGsAAAAAAAAAAAAUwHYAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-24T20:28:27.008Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 9,
               "Title": "ViewAllUsersWindow.xaml",
               "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ViewAllUsersWindow.xaml",
               "RelativeDocumentMoniker": "ViewAllUsersWindow.xaml",
               "ToolTip": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\ViewAllUsersWindow.xaml",
               "RelativeToolTip": "ViewAllUsersWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-24T20:25:40.995Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T20:25:40.995Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 10,
               "Title": "AddCashier.xaml.cs",
               "DocumentMoniker": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\AddCashier.xaml.cs",
               "RelativeDocumentMoniker": "AddCashier.xaml.cs",
@@ -117,8 +230,7 @@
               "RelativeToolTip": "AddCashier.xaml.cs",
               "ViewState": "AgIAAJsBAAAAAAAAAAAuwLUBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-24T10:30:08.597Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-24T10:30:08.597Z"
             }
           ]
         }
