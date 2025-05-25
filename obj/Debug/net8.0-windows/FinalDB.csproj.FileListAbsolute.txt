@@ -107,3 +107,4 @@ C:\Users\New Moon\Desktop\DB1\FinalDB\bin\Debug\net8.0-windows\DevOne.Security.C
 C:\Users\New Moon\Desktop\DB1\FinalDB\bin\Debug\net8.0-windows\BCrypt.Net-Next.dll
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\ViewAllUsersWindow.g.cs
 C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\ViewAllUsersWindow.baml
+C:\Users\New Moon\Desktop\DB1\FinalDB\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs

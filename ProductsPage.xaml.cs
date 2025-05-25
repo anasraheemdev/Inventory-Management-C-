@@ -1,67 +1,115 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel; // For ObservableCollection, useful for DataGrid data
-using System.Linq; // For LINQ operations if filtering/pagination is implemented
+using FinalDB.Models;
+using System.Linq; // Added for FirstOrDefault
 
 namespace FinalDB
 {
     /// <summary>
     /// Interaction logic for ProductsPage.xaml
     /// </summary>
-    public partial class ProductsPage : Window // Ensure this inherits from Window
+    public partial class ProductsPage : Window
     {
-        // Example: A simple Product class (you would have a more complex one)
-        public class Product
-        {
-            public string SKU { get; set; }
-            public string Name { get; set; }
-            public string Category { get; set; }
-            public string Brand { get; set; }
-            public decimal Price { get; set; }
-            public decimal Cost { get; set; }
-            public int Stock { get; set; }
-            public string Status { get; set; } // e.g., "In Stock", "Out of Stock", "Low Stock"
-        }
+        // --- Database Connection String ---
+        private const string ConnectionString =
+            "Server=localhost;" +
+            "Port=3306;" +
+            "Database=sultani;" +
+            "Uid=root;" +
+            "Pwd=anas786MALIK@;";
 
-        // Example data for the DataGrid (replace with actual data loading from DB)
         public ObservableCollection<Product> Products { get; set; }
 
         public ProductsPage()
         {
             InitializeComponent();
-            this.DataContext = this; // Set DataContext for binding if you use Properties
-
-            // Load some dummy data for demonstration
-            Products = new ObservableCollection<Product>
-            {
-                new Product { SKU = "PROD001", Name = "Laptop X1", Category = "Electronics", Brand = "Dell", Price = 1200.00m, Cost = 900.00m, Stock = 50, Status = "In Stock" },
-                new Product { SKU = "PROD002", Name = "Smartphone Pro", Category = "Electronics", Brand = "Samsung", Price = 800.00m, Cost = 600.00m, Stock = 120, Status = "In Stock" },
-                new Product { SKU = "PROD003", Name = "Wireless Earbuds", Category = "Accessories", Brand = "Sony", Price = 150.00m, Cost = 100.00m, Stock = 10, Status = "Low Stock" },
-                new Product { SKU = "PROD004", Name = "Gaming Mouse", Category = "Peripherals", Brand = "Logitech", Price = 50.00m, Cost = 30.00m, Stock = 0, Status = "Out of Stock" },
-                new Product { SKU = "PROD005", Name = "4K Monitor", Category = "Electronics", Brand = "LG", Price = 350.00m, Cost = 250.00m, Stock = 75, Status = "In Stock" },
-                // Add more dummy data as needed
-            };
-            ProductsDataGrid.ItemsSource = Products; // Assign the ObservableCollection to the DataGrid
+            Products = new ObservableCollection<Product>();
+            this.DataContext = this; // Set DataContext to this window for data binding
+            LoadProducts();
         }
 
-        // --- Sidebar Navigation Handlers ---
+        private void LoadProducts()
+        {
+            Products.Clear(); // Clear existing data before loading new
+            string query = @"
+                SELECT
+                    p.product_id,
+                    p.product_name,
+                    p.product_code,
+                    p.barcode,
+                    p.category_id,
+                    c.category_name,
+                    p.brand_id,
+                    b.brand_name,
+                    p.description,
+                    p.purchase_price,
+                    p.selling_price,
+                    p.tax_percentage,
+                    p.discount_percentage,
+                    p.stock_quantity,
+                    p.alert_quantity,
+                    p.unit,
+                    p.status,
+                    p.product_image_url
+                FROM products p
+                LEFT JOIN categories c ON p.category_id = c.category_id
+                LEFT JOIN brands b ON p.brand_id = b.brand_id";
+
+            using (MySqlConnection connection = new MySqlConnection(ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Products.Add(new Product
+                            {
+                                ProductId = reader.GetInt32("product_id"),
+                                ProductName = reader.GetString("product_name"),
+                                ProductCode = reader.GetString("product_code"),
+                                Barcode = reader.IsDBNull(reader.GetOrdinal("barcode")) ? null : reader.GetString("barcode"),
+                                CategoryId = reader.GetInt32("category_id"),
+                                CategoryName = reader.GetString("category_name"), // Fetch category name
+                                BrandId = reader.IsDBNull(reader.GetOrdinal("brand_id")) ? (int?)null : reader.GetInt32("brand_id"),
+                                BrandName = reader.IsDBNull(reader.GetOrdinal("brand_name")) ? null : reader.GetString("brand_name"), // Fetch brand name
+                                Description = reader.IsDBNull(reader.GetOrdinal("description")) ? null : reader.GetString("description"),
+                                PurchasePrice = reader.GetDecimal("purchase_price"),
+                                SellingPrice = reader.GetDecimal("selling_price"),
+                                TaxPercentage = reader.GetDecimal("tax_percentage"),
+                                DiscountPercentage = reader.GetDecimal("discount_percentage"),
+                                StockQuantity = reader.GetInt32("stock_quantity"),
+                                AlertQuantity = reader.GetInt32("alert_quantity"),
+                                Unit = reader.GetString("unit"),
+                                Status = reader.GetString("status"),
+                                ProductImageUrl = reader.IsDBNull(reader.GetOrdinal("product_image_url")) ? null : reader.GetString("product_image_url")
+                            });
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"Database Error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
+        // --- Sidebar Navigation Handlers (Keep as is, ensure correct window names) ---
 
         private void Dashboard_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
-            this.Close(); // Close the current ProductsPage window
+            this.Close();
         }
 
         private void MakeInvoice_Click(object sender, RoutedEventArgs e)
@@ -73,32 +121,21 @@ namespace FinalDB
 
         private void Transaction_Click(object sender, RoutedEventArgs e)
         {
-            // Assuming you have a Transaction window (e.g., TransactionWindow.xaml)
-            // For now, linking to Invoice as a placeholder if no specific Transaction window exists.
-            MessageBox.Show("Transaction window functionality to be implemented.");
-            // Example: TransactionWindow transactionWindow = new TransactionWindow();
-            // transactionWindow.Show();
-            // this.Close();
-        }
-
-        private void AddItemButton_Click(object sender, RoutedEventArgs e) // Corrected method name
-        {
-            AddProductPage addProductPageWindow = new AddProductPage();
-            addProductPageWindow.Show();
+            Invoice transactionWindow = new Invoice(); // Placeholder if no dedicated TransactionWindow
+            transactionWindow.Show();
             this.Close();
         }
 
-        // Products List is the current page, so no navigation needed for this button
-        // private void ProductsList_Click(object sender, RoutedEventArgs e) { /* Do nothing or refresh current view */ }
+        private void ProductsList_Click(object sender, RoutedEventArgs e)
+        {
+            LoadProducts(); // Optional: Re-load products if user clicks this while on the page
+        }
 
         private void PurchaseOrder_Click(object sender, RoutedEventArgs e)
         {
-            // Assuming this button will open ProductsPage or a specific PurchaseOrder window
-            // If PurchaseOrder is a separate window, replace with your PurchaseOrderWindow class
-            MessageBox.Show("Purchase Order window/functionality to be implemented.");
-            // Example: PurchaseOrderWindow purchaseOrderWindow = new PurchaseOrderWindow();
-            // purchaseOrderWindow.Show();
-            // this.Close();
+            PurchaseRecordWindow purchaseOrderWindow = new PurchaseRecordWindow(); // Assuming this is for purchase order
+            purchaseOrderWindow.Show();
+            this.Close();
         }
 
         private void PurchaseRecord_Click(object sender, RoutedEventArgs e)
@@ -108,193 +145,90 @@ namespace FinalDB
             this.Close();
         }
 
-        private void StockTracking_Click(object sender, RoutedEventArgs e)
-        {
-            StockTrackingWindow stockTrackingWindow = new StockTrackingWindow();
-            stockTrackingWindow.Show();
-            this.Close();
-        }
-
         private void Category_Click(object sender, RoutedEventArgs e)
         {
-            // Assuming you have a Category window (e.g., CategoryWindow.xaml)
-            // Using ProductsPage as a placeholder if Category window doesn't exist.
-            MessageBox.Show("Category management window to be implemented.");
-            // CategoryWindow categoryWindow = new CategoryWindow();
-            // categoryWindow.Show();
-            // this.Close();
+            ProductsPage categoryWindow = new ProductsPage(); // Placeholder for Category
+            categoryWindow.Show();
+            this.Close();
         }
 
         private void Brand_Click(object sender, RoutedEventArgs e)
         {
-            // Assuming you have a Brand window (e.g., BrandWindow.xaml)
-            // Using ProductsPage as a placeholder if Brand window doesn't exist.
-            MessageBox.Show("Brand management window to be implemented.");
-            // BrandWindow brandWindow = new BrandWindow();
-            // brandWindow.Show();
-            // this.Close();
+            ProductsPage brandWindow = new ProductsPage(); // Placeholder for Brand
+            brandWindow.Show();
+            this.Close();
         }
 
         private void Units_Click(object sender, RoutedEventArgs e)
         {
-            // Assuming you have a Units window (e.g., UnitsWindow.xaml)
-            // Using ProductsPage as a placeholder if Units window doesn't exist.
-            MessageBox.Show("Units management window to be implemented.");
-            // UnitsWindow unitsWindow = new UnitsWindow();
-            // unitsWindow.Show();
-            // this.Close();
+            ProductsPage unitsWindow = new ProductsPage(); // Placeholder for Units
+            unitsWindow.Show();
+            this.Close();
         }
 
         private void Supplier_Click(object sender, RoutedEventArgs e)
         {
-            // Assuming you have a Supplier window (e.g., SupplierWindow.xaml)
-            // Using ProductsPage as a placeholder if Supplier window doesn't exist.
-            MessageBox.Show("Supplier management window to be implemented.");
-            // SupplierWindow supplierWindow = new SupplierWindow();
-            // supplierWindow.Show();
-            // this.Close();
+            ProductsPage supplierWindow = new ProductsPage(); // Placeholder for Supplier
+            supplierWindow.Show();
+            this.Close();
         }
 
         private void Issued_Click(object sender, RoutedEventArgs e)
         {
-            // Assuming StockTrackingWindow handles "Issued" or is a dedicated Issued window.
-            StockTrackingWindow issuedWindow = new StockTrackingWindow();
+            StockTrackingWindow issuedWindow = new StockTrackingWindow(); // Assuming this handles 'Issued'
             issuedWindow.Show();
             this.Close();
         }
 
-        private void MasterPrice_Click(object sender, RoutedEventArgs e)
-        {
-            // Assuming MasterPrice is a separate window. If not, create MasterPriceWindow.xaml and .xaml.cs.
-            MessageBox.Show("Master Price window to be implemented.");
-            // MasterPriceWindow masterPriceWindow = new MasterPriceWindow();
-            // masterPriceWindow.Show();
-            // this.Close();
-        }
-
-        private void AddCashier_Click(object sender, RoutedEventArgs e) // Corrected from Cashiers_Click
+        private void Cashiers_Click(object sender, RoutedEventArgs e)
         {
             AddCashier addCashierWindow = new AddCashier();
             addCashierWindow.Show();
             this.Close();
         }
 
-        private void LoginAsAdmin_Click(object sender, RoutedEventArgs e)
+        private void Administrators_Click(object sender, RoutedEventArgs e)
         {
             LoginAsAdmin loginAsAdminWindow = new LoginAsAdmin();
             loginAsAdminWindow.Show();
             this.Close();
         }
 
-        private void LoginPage_Click(object sender, RoutedEventArgs e)
+        private void UserManager_Click(object sender, RoutedEventArgs e)
         {
-            LoginPage loginPage = new LoginPage();
-            loginPage.Show();
+            LoginAsAdmin userManagerWindow = new LoginAsAdmin(); // Or a dedicated UserManagerWindow
+            userManagerWindow.Show();
             this.Close();
         }
 
-        private void HomeLoginAs_Click(object sender, RoutedEventArgs e)
+        // --- New Handlers for ProductsPage ---
+
+        private void AddProduct_Click(object sender, RoutedEventArgs e)
         {
-            HomeLoginAs homeLoginAsWindow = new HomeLoginAs();
-            homeLoginAsWindow.Show();
+            AddProductPage addProductWindow = new AddProductPage();
+            addProductWindow.Show();
             this.Close();
         }
 
         private void EditProduct_Click(object sender, RoutedEventArgs e)
         {
-            // This is just a general link to EditProduct from the sidebar for demonstration.
-            EditProduct editProductWindow = new EditProduct();
-            editProductWindow.Show();
-            this.Close();
-        }
-
-        // --- Main Content Area Buttons ---
-
-        private void AddProduct_Click(object sender, RoutedEventArgs e)
-        {
-            AddProductPage addProductPageWindow = new AddProductPage();
-            addProductPageWindow.Show();
-            this.Close(); // Close the current ProductsPage
-        }
-
-        private void ExportProducts_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Exporting products to CSV/Excel... (Implementation needed)", "Export", MessageBoxButton.OK, MessageBoxImage.Information);
-            // Implement logic to export product data (e.g., to CSV, Excel)
-        }
-
-        private void ApplyFilter_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Applying filters to products list... (Implementation needed)", "Filter");
-            // Implement logic to filter the products displayed in the DataGrid
-        }
-
-        private void EditProductInGrid_Click(object sender, RoutedEventArgs e)
-        {
-            // This is a button *inside* the DataGrid row.
-            // We need to get the data item associated with the clicked button.
-            Button button = sender as Button;
-            if (button != null)
+            Button editButton = sender as Button;
+            if (editButton != null && editButton.Tag is int productId)
             {
-                Product selectedProduct = button.DataContext as Product;
+                // Find the product in the ObservableCollection
+                Product selectedProduct = Products.FirstOrDefault(p => p.ProductId == productId);
+
                 if (selectedProduct != null)
                 {
-                    MessageBox.Show($"Editing product: {selectedProduct.Name} (SKU: {selectedProduct.SKU})", "Edit Product", MessageBoxButton.OK, MessageBoxImage.Information);
-                    // Open the EditProduct window, potentially passing the product data
-                    EditProduct editProductWindow = new EditProduct();
-                    // You would typically pass the selectedProduct object or its ID to the EditProduct window
-                    // editProductWindow.LoadProduct(selectedProduct); // Assuming a method in EditProduct
+                    EditProduct editProductWindow = new EditProduct(selectedProduct); // Pass the product object
                     editProductWindow.Show();
                     this.Close(); // Close the current ProductsPage
                 }
-            }
-        }
-
-        private void DeleteProductInGrid_Click(object sender, RoutedEventArgs e)
-        {
-            // This is a button *inside* the DataGrid row.
-            // We need to get the data item associated with the clicked button.
-            Button button = sender as Button;
-            if (button != null)
-            {
-                Product selectedProduct = button.DataContext as Product;
-                if (selectedProduct != null)
+                else
                 {
-                    MessageBoxResult result = MessageBox.Show($"Are you sure you want to delete product: {selectedProduct.Name} (SKU: {selectedProduct.SKU})?", "Confirm Delete", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        // Implement deletion logic here
-                        Products.Remove(selectedProduct); // Remove from ObservableCollection to update UI
-                        MessageBox.Show($"Product {selectedProduct.Name} deleted!", "Delete Successful", MessageBoxButton.OK, MessageBoxImage.Information);
-                    }
+                    MessageBox.Show("Product not found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
-        }
-
-        // --- Pagination Buttons (Example placeholders) ---
-        private void PreviousPage_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Navigate to previous page (pagination logic needed).", "Pagination", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void Page1_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Navigate to Page 1 (pagination logic needed).", "Pagination", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void Page2_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Navigate to Page 2 (pagination logic needed).", "Pagination", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void Page3_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Navigate to Page 3 (pagination logic needed).", "Pagination", MessageBoxButton.OK, MessageBoxImage.Information);
-        }
-
-        private void NextPage_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Navigate to next page (pagination logic needed).", "Pagination", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
