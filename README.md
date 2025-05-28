@@ -1,5 +1,7 @@
 # Inventory Management System (C# WPF)
 
+![Inventory Management Database Design](https://www.outsystems.com/blog/-/media/images/blog/posts/designing-a-database/image-inside-bp-designing-your-first-database.png?updated=20211109152408&h=358&w=750&hash=6FE71FF77837DD052AA85D917448DB88)
+
 A comprehensive inventory management system built with C# and WPF, designed to streamline product management, user administration, and sales tracking for businesses.
 
 ## 🚀 Features
