@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging; // Required for Product.DisplayImageSource
 using System.Printing; // Required for PrintDialog
 using System.Windows.Markup; // Required for XamlWriter
 using System.Collections.Generic; // Required for EqualityComparer
+using System.Data; // Required for MySql.Data.MySqlClient
 
 namespace FinalDB
 {
@@ -204,14 +205,62 @@ namespace FinalDB
             }
         }
 
-        public class Customer
+        public class Customer : INotifyPropertyChanged
         {
-            public int CustomerId { get; set; }
-            public string CustomerName { get; set; } = string.Empty;
-            public string? PhoneNumber { get; set; }
-            public string? EmailAddress { get; set; }
-            public string? Address { get; set; }
-            public bool IsWalkIn { get; set; } // This is useful for identifying a default "Walk-In" customer
+            private int _customerId;
+            public int CustomerId
+            {
+                get => _customerId;
+                set => SetProperty(ref _customerId, value);
+            }
+
+            private string _customerName = string.Empty;
+            public string CustomerName
+            {
+                get => _customerName;
+                set => SetProperty(ref _customerName, value);
+            }
+
+            private string? _phoneNumber;
+            public string? PhoneNumber
+            {
+                get => _phoneNumber;
+                set => SetProperty(ref _phoneNumber, value);
+            }
+
+            private string? _emailAddress;
+            public string? EmailAddress
+            {
+                get => _emailAddress;
+                set => SetProperty(ref _emailAddress, value);
+            }
+
+            private string? _address;
+            public string? Address
+            {
+                get => _address;
+                set => SetProperty(ref _address, value);
+            }
+
+            private bool _isWalkIn;
+            public bool IsWalkIn
+            {
+                get => _isWalkIn;
+                set => SetProperty(ref _isWalkIn, value);
+            }
+
+            public event PropertyChangedEventHandler? PropertyChanged;
+            protected bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string? propertyName = null)
+            {
+                if (EqualityComparer<T>.Default.Equals(storage, value)) return false;
+                storage = value;
+                OnPropertyChanged(propertyName);
+                return true;
+            }
+            protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
         public class User
@@ -340,7 +389,7 @@ namespace FinalDB
 
         // --- Observable Collections for UI Binding ---
         public ObservableCollection<InvoiceItem> InvoiceItems { get; set; }
-        public ObservableCollection<Customer> Customers { get; set; }
+        public ObservableCollection<Customer> Customers { get; set; } // Stores all customers for lookup
         public ObservableCollection<User> SalesPersons { get; set; }
 
         // --- Invoice Header Properties (for Data Binding) ---
@@ -358,7 +407,14 @@ namespace FinalDB
             set => SetProperty(ref _invoiceDate, value);
         }
 
-        private Customer? _selectedCustomer;
+        private string _customerNameInput = string.Empty;
+        public string CustomerNameInput
+        {
+            get => _customerNameInput;
+            set => SetProperty(ref _customerNameInput, value);
+        }
+
+        private Customer? _selectedCustomer; // This will hold the actual customer object used for the invoice
         public Customer? SelectedCustomer
         {
             get => _selectedCustomer;
@@ -453,9 +509,14 @@ namespace FinalDB
         private void LoadInitialData()
         {
             GenerateNewInvoiceNumber();
-            LoadCustomers();
+            LoadCustomers(); // Load all customers initially
             LoadSalesPersons();
             CalculateTotals(); // Initial calculation (should be 0)
+
+            // Set default customer to "Walk-in Customer" if exists, otherwise first customer.
+            // This is done after loading all customers.
+            SelectedCustomer = Customers.FirstOrDefault(c => c.IsWalkIn) ?? Customers.FirstOrDefault();
+            CustomerNameInput = SelectedCustomer?.CustomerName ?? string.Empty;
         }
 
         private void GenerateNewInvoiceNumber()
@@ -488,17 +549,6 @@ namespace FinalDB
                             IsWalkIn = reader.GetBoolean("is_walk_in")
                         });
                     }
-                    // Select 'Walk-in' customer if exists, otherwise the first customer.
-                    // This assumes you have a customer record in your 'customers' table where 'is_walk_in' is true,
-                    // or a general default customer you want to auto-select.
-                    SelectedCustomer = Customers.FirstOrDefault(c => c.IsWalkIn) ?? Customers.FirstOrDefault();
-
-                    // If you want to explicitly add a "Walk-In Customer" as a *concept* without it being a record
-                    // in your customers table (which is generally not recommended for data integrity):
-                    // You would need to handle this differently, perhaps by having a static "Walk-In" option
-                    // in the ComboBox and managing its selection manually.
-                    // However, the current approach of having a 'Walk-in' customer in the DB is cleaner.
-
                 }
                 catch (MySqlException ex)
                 {
@@ -647,14 +697,19 @@ namespace FinalDB
         private void SaveAndPrintButton_Click(object sender, RoutedEventArgs e)
         {
             SaveInvoiceToDatabase();
-            //MessageBox.Show("Invoice saved and print functionality triggered.", "Invoice Action", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void SaveInvoiceToDatabase()
         {
-            if (SelectedCustomer is null || SelectedSalesPerson is null || InvoiceItems.Count == 0)
+            if (string.IsNullOrWhiteSpace(CustomerNameInput) && SelectedCustomer?.IsWalkIn == false)
             {
-                MessageBox.Show("Please ensure customer, sales person are selected and there are items in the invoice.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Please enter a customer name or ensure 'Walk-in Customer' is selected.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            if (SelectedSalesPerson is null || InvoiceItems.Count == 0)
+            {
+                MessageBox.Show("Please ensure sales person is selected and there are items in the invoice.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -664,15 +719,65 @@ namespace FinalDB
 
             try
             {
+                int currentCustomerId;
+
+                // 1. Handle Customer Logic
+                if (!string.IsNullOrWhiteSpace(CustomerNameInput))
+                {
+                    // Try to find an existing customer by the entered name
+                    Customer? existingCustomer = Customers.FirstOrDefault(c => c.CustomerName.Equals(CustomerNameInput.Trim(), StringComparison.OrdinalIgnoreCase));
+
+                    if (existingCustomer != null)
+                    {
+                        currentCustomerId = existingCustomer.CustomerId;
+                        SelectedCustomer = existingCustomer; // Update SelectedCustomer for printing/display
+                    }
+                    else
+                    {
+                        // Insert new customer
+                        string insertCustomerQuery = @"
+                            INSERT INTO customers (customer_name, phone_number, email_address, address, is_walk_in, created_at, updated_at)
+                            VALUES (@customerName, NULL, NULL, NULL, 0, NOW(), NOW());
+                            SELECT LAST_INSERT_ID();";
+
+                        using MySqlCommand customerCommand = new(insertCustomerQuery, connection, transaction);
+                        customerCommand.Parameters.AddWithValue("@customerName", CustomerNameInput.Trim());
+                        currentCustomerId = Convert.ToInt32(customerCommand.ExecuteScalar());
+
+                        // Add the new customer to the ObservableCollection for future reference in this session
+                        Customer newCustomer = new Customer
+                        {
+                            CustomerId = currentCustomerId,
+                            CustomerName = CustomerNameInput.Trim(),
+                            IsWalkIn = false
+                        };
+                        Customers.Add(newCustomer);
+                        SelectedCustomer = newCustomer; // Set the newly created customer as selected
+                    }
+                }
+                else
+                {
+                    // If no customer name is entered, ensure 'Walk-in Customer' is selected.
+                    // This logic assumes LoadInitialData correctly sets SelectedCustomer to Walk-in if available.
+                    if (SelectedCustomer == null || SelectedCustomer.IsWalkIn == false)
+                    {
+                        MessageBox.Show("No customer name provided. Please select a 'Walk-in Customer' or enter a new customer name.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        transaction.Rollback();
+                        return;
+                    }
+                    currentCustomerId = SelectedCustomer.CustomerId;
+                }
+
+                // 2. Insert Invoice Header
                 string invoiceInsertQuery = @"
-                    INSERT INTO invoices (invoice_number, invoice_date, customer_id, sales_person_id, payment_method, status, subtotal_amount, discount_amount, tax_amount, total_amount)
-                    VALUES (@invoiceNumber, @invoiceDate, @customerId, @salesPersonId, @paymentMethod, @status, @subtotal, @discount, @tax, @total);
+                    INSERT INTO invoices (invoice_number, invoice_date, customer_id, sales_person_id, payment_method, status, subtotal_amount, discount_amount, tax_amount, total_amount, created_at, updated_at)
+                    VALUES (@invoiceNumber, @invoiceDate, @customerId, @salesPersonId, @paymentMethod, @status, @subtotal, @discount, @tax, @total, NOW(), NOW());
                     SELECT LAST_INSERT_ID();";
 
                 using MySqlCommand invoiceCommand = new(invoiceInsertQuery, connection, transaction);
                 invoiceCommand.Parameters.AddWithValue("@invoiceNumber", InvoiceNumber);
                 invoiceCommand.Parameters.AddWithValue("@invoiceDate", InvoiceDate);
-                invoiceCommand.Parameters.AddWithValue("@customerId", SelectedCustomer.CustomerId);
+                invoiceCommand.Parameters.AddWithValue("@customerId", currentCustomerId);
                 invoiceCommand.Parameters.AddWithValue("@salesPersonId", SelectedSalesPerson.UserId);
                 invoiceCommand.Parameters.AddWithValue("@paymentMethod", PaymentMethod);
                 invoiceCommand.Parameters.AddWithValue("@status", Status);
@@ -683,9 +788,10 @@ namespace FinalDB
 
                 long invoiceId = (long)invoiceCommand.ExecuteScalar();
 
+                // 3. Insert Invoice Items
                 string itemInsertQuery = @"
-                    INSERT INTO invoice_items (invoice_id, product_id, quantity, unit_price, item_discount_amount, item_tax_amount, line_total)
-                    VALUES (@invoiceId, @productId, @quantity, @unitPrice, @itemDiscount, @itemTax, @lineTotal);";
+                    INSERT INTO invoice_items (invoice_id, product_id, quantity, unit_price, item_discount_percentage, item_tax_percentage, line_total, created_at, updated_at)
+                    VALUES (@invoiceId, @productId, @quantity, @unitPrice, @itemDiscountPercentage, @itemTaxPercentage, @lineTotal, NOW(), NOW());";
 
                 foreach (var item in InvoiceItems)
                 {
@@ -694,8 +800,8 @@ namespace FinalDB
                     itemCommand.Parameters.AddWithValue("@productId", item.ProductId);
                     itemCommand.Parameters.AddWithValue("@quantity", item.Quantity);
                     itemCommand.Parameters.AddWithValue("@unitPrice", item.UnitPrice);
-                    itemCommand.Parameters.AddWithValue("@itemDiscount", item.ItemDiscountPercentage);
-                    itemCommand.Parameters.AddWithValue("@itemTax", item.ItemTaxPercentage);
+                    itemCommand.Parameters.AddWithValue("@itemDiscountPercentage", item.ItemDiscountPercentage);
+                    itemCommand.Parameters.AddWithValue("@itemTaxPercentage", item.ItemTaxPercentage);
                     itemCommand.Parameters.AddWithValue("@lineTotal", item.LineTotal);
                     itemCommand.ExecuteNonQuery();
                 }
@@ -717,13 +823,18 @@ namespace FinalDB
             }
         }
 
+
         private void ClearInvoice()
         {
             InvoiceItems.Clear();
             GenerateNewInvoiceNumber();
             InvoiceDate = DateTime.Today;
-            SelectedCustomer = Customers.FirstOrDefault(c => c.IsWalkIn) ?? Customers.FirstOrDefault();
-            SelectedSalesPerson = SalesPersons.FirstOrDefault();
+            // Reset CustomerNameInput to the Walk-in customer's name if available, otherwise empty
+            CustomerNameInput = Customers.FirstOrDefault(c => c.IsWalkIn)?.CustomerName ?? string.Empty;
+            // Re-select the "Walk-in" customer for internal tracking if exists, otherwise null
+            SelectedCustomer = Customers.FirstOrDefault(c => c.IsWalkIn) ?? null;
+
+            SelectedSalesPerson = SalesPersons.FirstOrDefault(sp => sp.FullName == "Anas Raheem") ?? SalesPersons.FirstOrDefault(); // Reset to default sales person
             PaymentMethod = "Cash";
             Status = "Paid";
             NewItemProductCode = string.Empty;
@@ -743,7 +854,8 @@ namespace FinalDB
                 doc.Blocks.Add(new Paragraph(new Run("SULTANI POS - INVOICE")) { FontSize = 20, FontWeight = FontWeights.Bold, TextAlignment = TextAlignment.Center });
                 doc.Blocks.Add(new Paragraph(new Run($"Invoice No: {InvoiceNumber}")) { Margin = new Thickness(0, 10, 0, 0) });
                 doc.Blocks.Add(new Paragraph(new Run($"Date: {InvoiceDate:dd-MMM-yyyy}")));
-                doc.Blocks.Add(new Paragraph(new Run($"Customer: {SelectedCustomer?.CustomerName}")));
+                // Use the CustomerNameInput for printing, as it's the current user-entered value
+                doc.Blocks.Add(new Paragraph(new Run($"Customer: {CustomerNameInput}")));
                 doc.Blocks.Add(new Paragraph(new Run($"Sales Person: {SelectedSalesPerson?.FullName}")));
                 doc.Blocks.Add(new Paragraph(new Run($"Payment Method: {PaymentMethod}")));
                 doc.Blocks.Add(new Paragraph(new Run($"Status: {Status}")));

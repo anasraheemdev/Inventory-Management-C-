@@ -419,14 +419,8 @@
                                 <TextBlock Text="Date:" Style="{StaticResource FormLabelStyle}"/>
                                 <DatePicker SelectedDate="{Binding InvoiceDate, Mode=TwoWay}" Margin="0,0,0,10"/>
 
-                                <TextBlock Text="Customer:" Style="{StaticResource FormLabelStyle}"/>
-                                <ComboBox ItemsSource="{Binding Customers}"
-                                          DisplayMemberPath="CustomerName"
-                                          SelectedValuePath="CustomerId"
-                                          SelectedValue="{Binding SelectedCustomer.CustomerId, Mode=TwoWay}"
-                                          SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
-                                          Margin="0,0,0,0">
-                                </ComboBox>
+                                <TextBlock Text="Customer Name:" Style="{StaticResource FormLabelStyle}"/>
+                                <TextBox Text="{Binding CustomerNameInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,0,0"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Margin="10,0,0,0">
@@ -442,7 +436,6 @@
                                 <ComboBox ItemsSource="{Binding SalesPersons}"
                                           DisplayMemberPath="FullName"
                                           SelectedValuePath="UserId"
-                                          SelectedValue="{Binding SelectedSalesPerson.UserId, Mode=TwoWay}"
                                           SelectedItem="{Binding SelectedSalesPerson, Mode=TwoWay}"
                                           Margin="0,0,0,10">
                                 </ComboBox>
