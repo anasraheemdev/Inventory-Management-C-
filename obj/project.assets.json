@@ -1800,11 +1800,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\FinalDB.csproj",
+      "projectUniqueName": "D:\\Inventory-Management-C-\\FinalDB.csproj",
       "projectName": "FinalDB",
-      "projectPath": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\FinalDB.csproj",
+      "projectPath": "D:\\Inventory-Management-C-\\FinalDB.csproj",
       "packagesPath": "C:\\Users\\New Moon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\obj\\",
+      "outputPath": "D:\\Inventory-Management-C-\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

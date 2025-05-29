@@ -34,6 +34,48 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F0F5FF"/>
+            <Setter Property="Foreground" Value="#1E5AAF"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="8,0"/>
+        </Style>
+
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#F9F9F9"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#D8EDFF"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E0F2FF"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
             <Setter Property="Background" Value="White"/>
             <Setter Property="BorderBrush" Value="#E0E0E0"/>
@@ -41,19 +83,13 @@
             <Setter Property="HeadersVisibility" Value="Column"/>
             <Setter Property="RowHeight" Value="40"/>
             <Setter Property="AlternationCount" Value="2"/>
-            <Setter Property="AlternatingRowBackground" Value="#F9F9F9"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="CanUserAddRows" Value="False"/>
             <Setter Property="AutoGenerateColumns" Value="False"/>
             <Setter Property="IsReadOnly" Value="False"/>
-        </Style>
-
-        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
-            <Setter Property="Background" Value="#F0F5FF"/>
-            <Setter Property="Foreground" Value="#1E5AAF"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Height" Value="45"/>
-            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridColumnHeaderStyle}"/>
+            <Setter Property="CellStyle" Value="{StaticResource DataGridCellStyle}"/>
+            <Setter Property="RowStyle" Value="{StaticResource DataGridRowStyle}"/>
         </Style>
 
         <Style x:Key="PrimaryButtonStyle" TargetType="Button">
@@ -378,40 +414,45 @@
 
                             <StackPanel Grid.Column="0" Margin="0,0,10,0">
                                 <TextBlock Text="Invoice No:" Style="{StaticResource FormLabelStyle}"/>
-                                <TextBox Text="INV-2024-001" IsReadOnly="True" Margin="0,0,0,10"/>
+                                <TextBox Text="{Binding InvoiceNumber, Mode=OneWay}" IsReadOnly="True" Margin="0,0,0,10"/>
 
                                 <TextBlock Text="Date:" Style="{StaticResource FormLabelStyle}"/>
-                                <DatePicker SelectedDate="{Binding Path=Today, Mode=OneWay}" Margin="0,0,0,10"/>
+                                <DatePicker SelectedDate="{Binding InvoiceDate, Mode=TwoWay}" Margin="0,0,0,10"/>
 
                                 <TextBlock Text="Customer:" Style="{StaticResource FormLabelStyle}"/>
-                                <ComboBox Margin="0,0,0,0">
-                                    <ComboBoxItem Content="Walk-in Customer" IsSelected="True"/>
-                                    <ComboBoxItem Content="Routine Customer"/>
-                                    <ComboBoxItem Content="Bulk Customer"/>
+                                <ComboBox ItemsSource="{Binding Customers}"
+                                          DisplayMemberPath="CustomerName"
+                                          SelectedValuePath="CustomerId"
+                                          SelectedValue="{Binding SelectedCustomer.CustomerId, Mode=TwoWay}"
+                                          SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
+                                          Margin="0,0,0,0">
                                 </ComboBox>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Margin="10,0,0,0">
                                 <TextBlock Text="Payment Method:" Style="{StaticResource FormLabelStyle}"/>
-                                <ComboBox Margin="0,0,0,10">
-                                    <ComboBoxItem Content="Cash" IsSelected="True"/>
-                                    <ComboBoxItem Content="Credit Card"/>
+                                <ComboBox SelectedItem="{Binding PaymentMethod, Mode=TwoWay}" Margin="0,0,0,10">
+                                    <ComboBoxItem Content="Cash"/>
+                                    <ComboBoxItem Content="Card"/>
                                     <ComboBoxItem Content="Bank Transfer"/>
-                                    <ComboBoxItem Content="Mobile Payment"/>
+                                    <ComboBoxItem Content="Mobile Pay"/>
                                 </ComboBox>
 
                                 <TextBlock Text="Sales Person:" Style="{StaticResource FormLabelStyle}"/>
-                                <ComboBox Margin="0,0,0,10">
-                                    <ComboBoxItem Content="Anas Raheem" IsSelected="True"/>
-                                    <ComboBoxItem Content="Swail Kashar"/>
-                                    <ComboBoxItem Content="Muhammad Ibrahim"/>
+                                <ComboBox ItemsSource="{Binding SalesPersons}"
+                                          DisplayMemberPath="FullName"
+                                          SelectedValuePath="UserId"
+                                          SelectedValue="{Binding SelectedSalesPerson.UserId, Mode=TwoWay}"
+                                          SelectedItem="{Binding SelectedSalesPerson, Mode=TwoWay}"
+                                          Margin="0,0,0,10">
                                 </ComboBox>
 
                                 <TextBlock Text="Status:" Style="{StaticResource FormLabelStyle}"/>
-                                <ComboBox>
-                                    <ComboBoxItem Content="Paid" IsSelected="True"/>
+                                <ComboBox SelectedItem="{Binding Status, Mode=TwoWay}">
+                                    <ComboBoxItem Content="Paid"/>
                                     <ComboBoxItem Content="Pending"/>
                                     <ComboBoxItem Content="Cancelled"/>
+                                    <ComboBoxItem Content="Refunded"/>
                                 </ComboBox>
                             </StackPanel>
                         </Grid>
@@ -421,40 +462,51 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" Text="Invoice Items" FontSize="16" FontWeight="SemiBold" Margin="0,0,0,10" Foreground="#1E5AAF"/>
 
-                            <DataGrid Grid.Row="1" Name="InvoiceItemsGrid"
+                            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" HorizontalAlignment="Left">
+                                <TextBlock Text="Product Code/Barcode:" Style="{StaticResource FormLabelStyle}" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBox Width="150" Text="{Binding NewItemProductCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0"/>
+
+                                <TextBlock Text="Quantity:" Style="{StaticResource FormLabelStyle}" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                <TextBox Width="80" Text="{Binding NewItemQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0"/>
+
+                                <Button Style="{StaticResource PrimaryButtonStyle}" Name="AddNewItemToInvoiceButton" Click="AddNewItemToInvoiceButton_Click"
+                                        Padding="10,5" Height="Auto">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Margin="0,0,5,0"/>
+                                        <TextBlock Text="Add Product"/>
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+
+                            <DataGrid Grid.Row="2" Name="InvoiceItemsGrid"
                                       Style="{StaticResource DataGridStyle}"
-                                      ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                                      ItemsSource="{Binding InvoiceItems}"
                                       MinHeight="150">
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Item Code" Width="*" Binding="{Binding ItemCode}"/>
+                                    <DataGridTextColumn Header="Code" Width="Auto" Binding="{Binding ProductCode}"/>
                                     <DataGridTextColumn Header="Description" Width="2*" Binding="{Binding Description}"/>
-                                    <DataGridTextColumn Header="Quantity" Width="*" Binding="{Binding Quantity}"/>
-                                    <DataGridTextColumn Header="Unit Price" Width="*" Binding="{Binding UnitPrice}"/>
-                                    <DataGridTextColumn Header="Discount" Width="*" Binding="{Binding Discount}"/>
-                                    <DataGridTextColumn Header="Tax" Width="*" Binding="{Binding Tax}"/>
-                                    <DataGridTextColumn Header="Total" Width="*" Binding="{Binding Total}"/>
+                                    <DataGridTextColumn Header="Qty" Width="Auto" Binding="{Binding Quantity}"/>
+                                    <DataGridTextColumn Header="Unit Price" Width="Auto" Binding="{Binding UnitPrice, StringFormat='N2'}"/>
+                                    <DataGridTextColumn Header="Disc (%)" Width="Auto" Binding="{Binding ItemDiscountPercentage, StringFormat='N2'}"/>
+                                    <DataGridTextColumn Header="Tax (%)" Width="Auto" Binding="{Binding ItemTaxPercentage, StringFormat='N2'}"/>
+                                    <DataGridTextColumn Header="Line Total" Width="*" Binding="{Binding LineTotal, StringFormat='Rs. {0:N2}'}" IsReadOnly="True"/>
                                     <DataGridTemplateColumn Width="Auto" MinWidth="50">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button Style="{StaticResource DataGridDeleteButtonStyle}" Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" ToolTip="Delete Item"/>
+                                                <Button Style="{StaticResource DataGridDeleteButtonStyle}" Content="&#xE74D;" FontFamily="Segoe MDL2 Assets" ToolTip="Delete Item"
+                                                        Click="DeleteInvoiceItem_Click"/>
                                             </DataTemplate>
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
-
-                            <Button Grid.Row="2" Style="{StaticResource PrimaryButtonStyle}" HorizontalAlignment="Left" Margin="0,10,0,0" Name="AddNewItemToInvoiceButton" Click="AddNewItemToInvoiceButton_Click">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="&#xE710;" FontFamily="Segoe MDL2 Assets" Margin="0,0,8,0"/>
-                                    <TextBlock Text="Add Item"/>
-                                </StackPanel>
-                            </Button>
                         </Grid>
                     </Border>
 
@@ -496,18 +548,18 @@
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock Grid.Row="0" Grid.Column="0" Text="Subtotal:" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="Rs. 0.00" HorizontalAlignment="Right" Margin="0,0,0,8" FontSize="13" Foreground="#333"/>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SubtotalAmount, StringFormat='Rs. {0:N2}'}" HorizontalAlignment="Right" Margin="0,0,0,8" FontSize="13" Foreground="#333"/>
 
                                 <TextBlock Grid.Row="1" Grid.Column="0" Text="Discount:" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,8"/>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="Rs. 0.00" HorizontalAlignment="Right" Margin="0,0,0,8" FontSize="13" Foreground="#333"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding DiscountAmount, StringFormat='Rs. {0:N2}'}" HorizontalAlignment="Right" Margin="0,0,0,8" FontSize="13" Foreground="#333"/>
 
                                 <TextBlock Grid.Row="2" Grid.Column="0" Text="Tax (VAT):" Style="{StaticResource FormLabelStyle}" FontWeight="SemiBold" FontSize="13" Margin="0,0,0,10"/>
-                                <TextBlock Grid.Row="2" Grid.Column="1" Text="Rs. 0.00" HorizontalAlignment="Right" Margin="0,0,0,10" FontSize="13" Foreground="#333"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TaxAmount, StringFormat='Rs. {0:N2}'}" HorizontalAlignment="Right" Margin="0,0,0,10" FontSize="13" Foreground="#333"/>
 
                                 <Border Grid.Row="3" Grid.ColumnSpan="2" BorderBrush="#E0E0E0" BorderThickness="0,1,0,0" Margin="0,5,0,10"/>
 
                                 <TextBlock Grid.Row="4" Grid.Column="0" Text="Total:" FontWeight="Bold" FontSize="18" Foreground="{StaticResource PrimaryForegroundBrush}"/>
-                                <TextBlock Grid.Row="4" Grid.Column="1" Text="Rs. 0.00" FontWeight="Bold" FontSize="18" HorizontalAlignment="Right" Foreground="{StaticResource PrimaryForegroundBrush}"/>
+                                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding TotalAmount, StringFormat='Rs. {0:N2}'}" FontWeight="Bold" FontSize="18" HorizontalAlignment="Right" Foreground="{StaticResource PrimaryForegroundBrush}"/>
                             </Grid>
                         </Border>
                     </Grid>

@@ -27,7 +27,7 @@ namespace FinalDB
         {
             InitializeComponent();
             Products = new ObservableCollection<Product>();
-            this.DataContext = this; // Set DataContext to this window for data binding
+            this.DataContext = this; 
             LoadProducts();
         }
 

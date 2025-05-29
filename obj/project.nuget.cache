@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FuekS+1bCac=",
+  "dgSpecHash": "lO0anI5rbeM=",
   "success": true,
-  "projectFilePath": "C:\\Users\\New Moon\\Desktop\\DB1\\FinalDB\\FinalDB.csproj",
+  "projectFilePath": "D:\\Inventory-Management-C-\\FinalDB.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\New Moon\\.nuget\\packages\\bcrypt\\1.0.0\\bcrypt.1.0.0.nupkg.sha512",
     "C:\\Users\\New Moon\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
