@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "D:\\Inventory-Management-C-\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\invoice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:invoice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\loginasadmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:loginasadmin.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\loginasadmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:loginasadmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\invoice.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:invoice.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\loginasadmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:loginasadmin.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\invoice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:invoice.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\addproductpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -70,7 +74,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "AddCashier.xaml",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\AddCashier.xaml",
               "RelativeDocumentMoniker": "AddCashier.xaml",
@@ -91,6 +95,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "LoginAsAdmin.xaml.cs",
+              "DocumentMoniker": "D:\\Inventory-Management-C-\\LoginAsAdmin.xaml.cs",
+              "RelativeDocumentMoniker": "LoginAsAdmin.xaml.cs",
+              "ToolTip": "D:\\Inventory-Management-C-\\LoginAsAdmin.xaml.cs",
+              "RelativeToolTip": "LoginAsAdmin.xaml.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAACUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T22:43:07.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Invoice.xaml",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\Invoice.xaml",
               "RelativeDocumentMoniker": "Invoice.xaml",
@@ -102,31 +119,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Invoice.xaml.cs",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\Invoice.xaml.cs",
               "RelativeDocumentMoniker": "Invoice.xaml.cs",
               "ToolTip": "D:\\Inventory-Management-C-\\Invoice.xaml.cs",
               "RelativeToolTip": "Invoice.xaml.cs",
-              "ViewState": "AgIAADQEAAAAAAAAAAAAAFcEAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAGkEAAAAAAAAAAAmwIUEAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-29T12:18:31.794Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "LoginAsAdmin.xaml",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\LoginAsAdmin.xaml",
               "RelativeDocumentMoniker": "LoginAsAdmin.xaml",
               "ToolTip": "D:\\Inventory-Management-C-\\LoginAsAdmin.xaml",
               "RelativeToolTip": "LoginAsAdmin.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-25T23:54:10.868Z"
+              "WhenOpened": "2025-05-25T23:54:10.868Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "ProductsPage.xaml.cs",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\ProductsPage.xaml.cs",
               "RelativeDocumentMoniker": "ProductsPage.xaml.cs",
@@ -138,7 +156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "ProductsPage.xaml",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\ProductsPage.xaml",
               "RelativeDocumentMoniker": "ProductsPage.xaml",
@@ -149,7 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "editProduct.xaml",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\editProduct.xaml",
               "RelativeDocumentMoniker": "editProduct.xaml",
@@ -160,7 +178,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AddProductPage.xaml",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\AddProductPage.xaml",
               "RelativeDocumentMoniker": "AddProductPage.xaml",
@@ -171,7 +189,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AddProductPage.xaml.cs",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\AddProductPage.xaml.cs",
               "RelativeDocumentMoniker": "AddProductPage.xaml.cs",
@@ -183,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
@@ -195,7 +213,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
@@ -206,7 +224,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ViewAllUsersWindow.xaml.cs",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\ViewAllUsersWindow.xaml.cs",
               "RelativeDocumentMoniker": "ViewAllUsersWindow.xaml.cs",
@@ -218,7 +236,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ViewAllUsersWindow.xaml",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\ViewAllUsersWindow.xaml",
               "RelativeDocumentMoniker": "ViewAllUsersWindow.xaml",
@@ -229,7 +247,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "AddCashier.xaml.cs",
               "DocumentMoniker": "D:\\Inventory-Management-C-\\AddCashier.xaml.cs",
               "RelativeDocumentMoniker": "AddCashier.xaml.cs",

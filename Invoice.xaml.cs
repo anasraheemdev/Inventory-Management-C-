@@ -509,14 +509,12 @@ namespace FinalDB
         private void LoadInitialData()
         {
             GenerateNewInvoiceNumber();
-            LoadCustomers(); // Load all customers initially
-            LoadSalesPersons();
+            LoadCustomers(); // Loads customers, and ensures 'Walk-in Customer' exists
+            LoadSalesPersons(); // Now loads static data
             CalculateTotals(); // Initial calculation (should be 0)
 
-            // Set default customer to "Walk-in Customer" if exists, otherwise first customer.
-            // This is done after loading all customers.
-            SelectedCustomer = Customers.FirstOrDefault(c => c.IsWalkIn) ?? Customers.FirstOrDefault();
-            CustomerNameInput = SelectedCustomer?.CustomerName ?? string.Empty;
+            // SelectedCustomer and CustomerNameInput are set within LoadCustomers() now
+            // To ensure it's always the 'Walk-in Customer' initially unless changed by user input later.
         }
 
         private void GenerateNewInvoiceNumber()
@@ -528,18 +526,21 @@ namespace FinalDB
         private void LoadCustomers()
         {
             Customers.Clear();
-            const string query = "SELECT customer_id, customer_name, phone_number, email_address, address, is_walk_in FROM customers";
+            bool walkInCustomerFound = false;
+            int walkInCustomerId = -1; // Initialize with an invalid ID
+
+            const string selectCustomersQuery = "SELECT customer_id, customer_name, phone_number, email_address, address, is_walk_in FROM customers";
 
             using (MySqlConnection connection = new(ConnectionString))
             {
                 try
                 {
                     connection.Open();
-                    using MySqlCommand command = new(query, connection);
+                    using MySqlCommand command = new(selectCustomersQuery, connection);
                     using MySqlDataReader reader = command.ExecuteReader();
                     while (reader.Read())
                     {
-                        Customers.Add(new()
+                        Customer c = new()
                         {
                             CustomerId = reader.GetInt32("customer_id"),
                             CustomerName = reader.GetString("customer_name"),
@@ -547,55 +548,80 @@ namespace FinalDB
                             EmailAddress = reader.IsDBNull(reader.GetOrdinal("email_address")) ? null : reader.GetString("email_address"),
                             Address = reader.IsDBNull(reader.GetOrdinal("address")) ? null : reader.GetString("address"),
                             IsWalkIn = reader.GetBoolean("is_walk_in")
-                        });
+                        };
+                        Customers.Add(c);
+                        if (c.IsWalkIn)
+                        {
+                            walkInCustomerFound = true;
+                            walkInCustomerId = c.CustomerId; // Store the ID of the walk-in customer
+                        }
                     }
+                    reader.Close(); // Close the reader before executing another command on the same connection
                 }
                 catch (MySqlException ex)
                 {
                     MessageBox.Show($"Database error while loading customers: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    // Do not return here, attempt to create Walk-in customer if not found.
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"An unexpected error occurred while loading customers: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    // Do not return here, attempt to create Walk-in customer if not found.
+                }
+
+                // If 'Walk-in Customer' was not found, create it
+                if (!walkInCustomerFound)
+                {
+                    try
+                    {
+                        // Ensure connection is still open or reopen if it closed due to an earlier error
+                        if (connection.State != ConnectionState.Open) connection.Open();
+
+                        string insertWalkInQuery = @"
+                            INSERT INTO customers (customer_name, is_walk_in, created_at, updated_at)
+                            VALUES ('Walk-in Customer', 1, NOW(), NOW());
+                            SELECT LAST_INSERT_ID();";
+
+                        using MySqlCommand insertCommand = new(insertWalkInQuery, connection);
+                        walkInCustomerId = Convert.ToInt32(insertCommand.ExecuteScalar());
+
+                        // Add the newly created walk-in customer to the ObservableCollection
+                        Customer newWalkIn = new Customer
+                        {
+                            CustomerId = walkInCustomerId,
+                            CustomerName = "Walk-in Customer",
+                            IsWalkIn = true
+                        };
+                        Customers.Add(newWalkIn);
+                        MessageBox.Show("Automatically created 'Walk-in Customer' in the database.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (MySqlException ex)
+                    {
+                        MessageBox.Show($"Database error creating 'Walk-in Customer': {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An unexpected error occurred creating 'Walk-in Customer': {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
             }
+
+            // Now, after ensuring 'Walk-in Customer' exists and is loaded:
+            SelectedCustomer = Customers.FirstOrDefault(c => c.IsWalkIn) ?? Customers.FirstOrDefault();
+            CustomerNameInput = SelectedCustomer?.CustomerName ?? string.Empty;
         }
+
 
         private void LoadSalesPersons()
         {
             SalesPersons.Clear();
-            // Updated query to specifically fetch "Anas Raheem", "Swail Kashar", and "Muhammad Ibrahim"
-            const string query = "SELECT user_id, username, full_name, role FROM users WHERE full_name IN ('Anas Raheem', 'Swail Kashar', 'Muhammad Ibrahim') ORDER BY full_name";
+            // Statically add the sales persons as requested
+            SalesPersons.Add(new User { UserId = 1, Username = "anas.r", FullName = "Anas Raheem", Role = "Cashier" });
+            SalesPersons.Add(new User { UserId = 2, Username = "swail.k", FullName = "Swail Kashar", Role = "Cashier" });
+            SalesPersons.Add(new User { UserId = 3, Username = "muhammad.i", FullName = "Muhammad Ibrahim", Role = "Cashier" });
 
-            using (MySqlConnection connection = new(ConnectionString))
-            {
-                try
-                {
-                    connection.Open();
-                    using MySqlCommand command = new(query, connection);
-                    using MySqlDataReader reader = command.ExecuteReader();
-                    while (reader.Read())
-                    {
-                        SalesPersons.Add(new()
-                        {
-                            UserId = reader.GetInt32("user_id"),
-                            Username = reader.GetString("username"),
-                            FullName = reader.GetString("full_name"),
-                            Role = reader.GetString("role")
-                        });
-                    }
-                    // Select "Anas Raheem" by default if available, otherwise select the first person in the list
-                    SelectedSalesPerson = SalesPersons.FirstOrDefault(sp => sp.FullName == "Anas Raheem") ?? SalesPersons.FirstOrDefault();
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show($"Database error while loading sales persons: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An unexpected error occurred while loading sales persons: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
+            // Select "Anas Raheem" by default if available, otherwise select the first person in the list
+            SelectedSalesPerson = SalesPersons.FirstOrDefault(sp => sp.FullName == "Anas Raheem") ?? SalesPersons.FirstOrDefault();
         }
 
         private void CalculateTotals()
@@ -701,50 +727,72 @@ namespace FinalDB
 
         private void SaveInvoiceToDatabase()
         {
-            if (string.IsNullOrWhiteSpace(CustomerNameInput) && SelectedCustomer?.IsWalkIn == false)
+            // Initial validation for customer name input
+            if (string.IsNullOrWhiteSpace(CustomerNameInput) && (SelectedCustomer == null || SelectedCustomer.IsWalkIn == false))
             {
                 MessageBox.Show("Please enter a customer name or ensure 'Walk-in Customer' is selected.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
+            // Other general validations
             if (SelectedSalesPerson is null || InvoiceItems.Count == 0)
             {
                 MessageBox.Show("Please ensure sales person is selected and there are items in the invoice.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            using MySqlConnection connection = new(ConnectionString);
-            connection.Open();
-            using MySqlTransaction transaction = connection.BeginTransaction();
+            // Safeguard: Ensure SelectedCustomer is not null and has a valid ID before proceeding
+            // This is a critical check to prevent the foreign key error before even touching the DB
+            if (SelectedCustomer == null || SelectedCustomer.CustomerId <= 0)
+            {
+                MessageBox.Show("A valid customer could not be identified for this invoice. Please ensure 'Walk-in Customer' is correctly configured or enter a new customer name.", "Customer Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // --- TEMPORARY DEBUG MESSAGE START ---
+            // This will help us confirm what customer ID the app is using just before the DB operation.
+            if (SelectedCustomer != null)
+            {
+                MessageBox.Show($"DEBUG INFO:\nCustomer Name Input: '{CustomerNameInput}'\nSelected Customer ID: {SelectedCustomer.CustomerId}\nSelected Customer Name: '{SelectedCustomer.CustomerName}'\nIs Walk-in: {SelectedCustomer.IsWalkIn}", "Customer Debugging", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            // --- TEMPORARY DEBUG MESSAGE END ---
+
+
+            MySqlConnection connection = new(ConnectionString);
+            MySqlTransaction? transaction = null; // Declare transaction here, initialized to null
 
             try
             {
+                connection.Open();
+                transaction = connection.BeginTransaction(); // Assign transaction here
+
                 int currentCustomerId;
 
-                // 1. Handle Customer Logic
+                // Handle Customer Logic: Prioritize existing or create new based on CustomerNameInput
                 if (!string.IsNullOrWhiteSpace(CustomerNameInput))
                 {
-                    // Try to find an existing customer by the entered name
+                    // Attempt to find an existing customer by the entered name
                     Customer? existingCustomer = Customers.FirstOrDefault(c => c.CustomerName.Equals(CustomerNameInput.Trim(), StringComparison.OrdinalIgnoreCase));
 
                     if (existingCustomer != null)
                     {
                         currentCustomerId = existingCustomer.CustomerId;
-                        SelectedCustomer = existingCustomer; // Update SelectedCustomer for printing/display
+                        SelectedCustomer = existingCustomer; // Update SelectedCustomer to the found customer
                     }
                     else
                     {
-                        // Insert new customer
+                        // Insert a new customer if name is provided and not found
                         string insertCustomerQuery = @"
-                            INSERT INTO customers (customer_name, phone_number, email_address, address, is_walk_in, created_at, updated_at)
-                            VALUES (@customerName, NULL, NULL, NULL, 0, NOW(), NOW());
-                            SELECT LAST_INSERT_ID();";
+                    INSERT INTO customers (customer_name, phone_number, email_address, address, is_walk_in, created_at, updated_at)
+                    VALUES (@customerName, NULL, NULL, NULL, 0, NOW(), NOW());
+                    SELECT LAST_INSERT_ID();";
 
                         using MySqlCommand customerCommand = new(insertCustomerQuery, connection, transaction);
                         customerCommand.Parameters.AddWithValue("@customerName", CustomerNameInput.Trim());
+
                         currentCustomerId = Convert.ToInt32(customerCommand.ExecuteScalar());
 
-                        // Add the new customer to the ObservableCollection for future reference in this session
+                        // Add the new customer to the ObservableCollection and set as selected
                         Customer newCustomer = new Customer
                         {
                             CustomerId = currentCustomerId,
@@ -752,27 +800,19 @@ namespace FinalDB
                             IsWalkIn = false
                         };
                         Customers.Add(newCustomer);
-                        SelectedCustomer = newCustomer; // Set the newly created customer as selected
+                        SelectedCustomer = newCustomer;
                     }
                 }
-                else
+                else // CustomerNameInput is empty, use the currently selected customer (expected to be 'Walk-in Customer')
                 {
-                    // If no customer name is entered, ensure 'Walk-in Customer' is selected.
-                    // This logic assumes LoadInitialData correctly sets SelectedCustomer to Walk-in if available.
-                    if (SelectedCustomer == null || SelectedCustomer.IsWalkIn == false)
-                    {
-                        MessageBox.Show("No customer name provided. Please select a 'Walk-in Customer' or enter a new customer name.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                        transaction.Rollback();
-                        return;
-                    }
                     currentCustomerId = SelectedCustomer.CustomerId;
                 }
 
                 // 2. Insert Invoice Header
                 string invoiceInsertQuery = @"
-                    INSERT INTO invoices (invoice_number, invoice_date, customer_id, sales_person_id, payment_method, status, subtotal_amount, discount_amount, tax_amount, total_amount, created_at, updated_at)
-                    VALUES (@invoiceNumber, @invoiceDate, @customerId, @salesPersonId, @paymentMethod, @status, @subtotal, @discount, @tax, @total, NOW(), NOW());
-                    SELECT LAST_INSERT_ID();";
+            INSERT INTO invoices (invoice_number, invoice_date, customer_id, sales_person_id, payment_method, status, subtotal_amount, discount_amount, tax_amount, total_amount, created_at, updated_at)
+            VALUES (@invoiceNumber, @invoiceDate, @customerId, @salesPersonId, @paymentMethod, @status, @subtotal, @discount, @tax, @total, NOW(), NOW());
+            SELECT LAST_INSERT_ID();";
 
                 using MySqlCommand invoiceCommand = new(invoiceInsertQuery, connection, transaction);
                 invoiceCommand.Parameters.AddWithValue("@invoiceNumber", InvoiceNumber);
@@ -786,12 +826,13 @@ namespace FinalDB
                 invoiceCommand.Parameters.AddWithValue("@tax", TaxAmount);
                 invoiceCommand.Parameters.AddWithValue("@total", TotalAmount);
 
-                long invoiceId = (long)invoiceCommand.ExecuteScalar();
+                // Retrieve the newly inserted invoice ID using ulong to handle BIGINT UNSIGNED correctly
+                ulong invoiceId = (ulong)invoiceCommand.ExecuteScalar();
 
                 // 3. Insert Invoice Items
                 string itemInsertQuery = @"
-                    INSERT INTO invoice_items (invoice_id, product_id, quantity, unit_price, item_discount_percentage, item_tax_percentage, line_total, created_at, updated_at)
-                    VALUES (@invoiceId, @productId, @quantity, @unitPrice, @itemDiscountPercentage, @itemTaxPercentage, @lineTotal, NOW(), NOW());";
+            INSERT INTO invoice_items (invoice_id, product_id, quantity, unit_price, item_discount_percentage, item_tax_percentage, line_total)
+            VALUES (@invoiceId, @productId, @quantity, @unitPrice, @itemDiscountPercentage, @itemTaxPercentage, @lineTotal);";
 
                 foreach (var item in InvoiceItems)
                 {
@@ -813,13 +854,18 @@ namespace FinalDB
             }
             catch (MySqlException ex)
             {
-                transaction.Rollback();
+                transaction?.Rollback(); // Use null-conditional operator to safely call Rollback if transaction was initialized
                 MessageBox.Show($"Database error while saving invoice: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (Exception ex)
             {
-                transaction.Rollback();
+                transaction?.Rollback(); // Use null-conditional operator
                 MessageBox.Show($"An unexpected error occurred while saving invoice: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {
+                connection.Close(); // Ensure connection is always closed
+                connection.Dispose(); // Release resources
             }
         }
 
