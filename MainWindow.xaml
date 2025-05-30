@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinalDB"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="BLANKSYS - Point of Sales" Height="720" Width="1280"
+        Title="SULTANI POS - Point of Sales" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -68,6 +69,71 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <SolidColorBrush x:Key="PrimaryBlue" Color="#1E5AAF"/>
+        <SolidColorBrush x:Key="DarkBlue" Color="#1648A0"/>
+        <SolidColorBrush x:Key="LightBlue" Color="#9DC3F5"/>
+        <SolidColorBrush x:Key="AccentBlue" Color="#3CEFFF"/>
+        <SolidColorBrush x:Key="GreenSuccess" Color="#4CAF50"/>
+        <SolidColorBrush x:Key="RedDanger" Color="#F44336"/>
+
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#F0F5FF"/>
+            <Setter Property="Foreground" Value="#1E5AAF"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Padding" Value="8,0"/>
+        </Style>
+
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridCell">
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <ContentPresenter/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Validation.ErrorTemplate" Value="{x:Null}"/>
+            <Setter Property="Background" Value="White"/>
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#F9F9F9"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#D8EDFF"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E0F2FF"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DataGridStyle" TargetType="{x:Type DataGrid}">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="RowHeight" Value="40"/>
+            <Setter Property="AlternationCount" Value="2"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="ColumnHeaderStyle" Value="{StaticResource DataGridColumnHeaderStyle}"/>
+            <Setter Property="CellStyle" Value="{StaticResource DataGridCellStyle}"/>
+            <Setter Property="RowStyle" Value="{StaticResource DataGridRowStyle}"/>
+        </Style>
     </Window.Resources>
 
     <Grid>
@@ -129,7 +195,13 @@
                         <Button Style="{StaticResource MenuButtonStyle}" Click="Cashiers_Click">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="&#xE716;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
-                                <TextBlock Text="Cashiers"/>
+                                <TextBlock Text="View All Users"/>
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="PurchaseRecordWindow_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE8FB;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Purchase Record"/>
                             </StackPanel>
                         </Button>
                         <Button Style="{StaticResource MenuButtonStyle}" Click="MasterPrice_Click">
@@ -168,6 +240,12 @@
                                 <TextBlock Text="Login"/>
                             </StackPanel>
                         </Button>
+                        <Button Style="{StaticResource MenuButtonStyle}" Click="HomeLoginAs_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE80F;" FontFamily="Segoe MDL2 Assets" Margin="0,0,10,0"/>
+                                <TextBlock Text="Home (Login As)"/>
+                            </StackPanel>
+                        </Button>
                     </StackPanel>
                 </ScrollViewer>
 
@@ -202,7 +280,7 @@
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,25,0">
                         <Border Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0" CornerRadius="6" Padding="15,8" Margin="0,0,15,0" Height="42">
-                            <TextBlock Text="2025" FontSize="20" FontWeight="Bold" Foreground="White"/>
+                            <TextBlock Text="{Binding CurrentYear}" FontSize="20" FontWeight="Bold" Foreground="White"/>
                         </Border>
                     </StackPanel>
                 </Grid>
@@ -246,15 +324,15 @@
 
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Today Gross Profit" Foreground="#6E6E6E" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Rs. 23,560,000" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
+                                <TextBlock Text="{Binding TodayGrossProfit}" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="▲" Foreground="#4CAF50" FontWeight="Bold"/>
-                                    <TextBlock Text=" 8.5% Up from yesterday" Foreground="#4CAF50" FontSize="12" FontWeight="Medium"/>
+                                    <TextBlock Text="▲" Foreground="{StaticResource GreenSuccess}" FontWeight="Bold"/>
+                                    <TextBlock Text=" 8.5% Up from yesterday" Foreground="{StaticResource GreenSuccess}" FontSize="12" FontWeight="Medium"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <Border Grid.Column="1" Width="45" Height="45" Background="#EBF5FF" CornerRadius="22" VerticalAlignment="Top">
-                                <TextBlock Text="&#xE8F9;" FontFamily="Segoe MDL2 Assets" Foreground="#1E5AAF" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xE8F9;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource PrimaryBlue}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
@@ -268,15 +346,15 @@
 
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Today Net Profit" Foreground="#6E6E6E" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Rs. 3,560,000" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
+                                <TextBlock Text="{Binding TodayNetProfit}" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="▲" Foreground="#4CAF50" FontWeight="Bold"/>
-                                    <TextBlock Text=" 8.5% Up from yesterday" Foreground="#4CAF50" FontSize="12" FontWeight="Medium"/>
+                                    <TextBlock Text="▲" Foreground="{StaticResource GreenSuccess}" FontWeight="Bold"/>
+                                    <TextBlock Text=" 8.5% Up from yesterday" Foreground="{StaticResource GreenSuccess}" FontSize="12" FontWeight="Medium"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <Border Grid.Column="1" Width="45" Height="45" Background="#E8F5E9" CornerRadius="22" VerticalAlignment="Top">
-                                <TextBlock Text="&#xE8EB;" FontFamily="Segoe MDL2 Assets" Foreground="#4CAF50" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xE8EB;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource GreenSuccess}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
@@ -290,15 +368,15 @@
 
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Today Item Receipt" Foreground="#6E6E6E" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Rs. 1,500,350" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
+                                <TextBlock Text="{Binding TodayItemReceipt}" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="▲" Foreground="#4CAF50" FontWeight="Bold"/>
-                                    <TextBlock Text=" 8.5% Up from yesterday" Foreground="#4CAF50" FontSize="12" FontWeight="Medium"/>
+                                    <TextBlock Text="▲" Foreground="{StaticResource GreenSuccess}" FontWeight="Bold"/>
+                                    <TextBlock Text=" 8.5% Up from yesterday" Foreground="{StaticResource GreenSuccess}" FontSize="12" FontWeight="Medium"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <Border Grid.Column="1" Width="45" Height="45" Background="#EBF5FF" CornerRadius="22" VerticalAlignment="Top">
-                                <TextBlock Text="&#xE8A5;" FontFamily="Segoe MDL2 Assets" Foreground="#1E5AAF" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xE8A5;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource PrimaryBlue}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
@@ -312,15 +390,15 @@
 
                             <StackPanel Grid.Column="0">
                                 <TextBlock Text="Today Estimation Loss" Foreground="#6E6E6E" FontSize="13" FontWeight="Medium"/>
-                                <TextBlock Text="Rs. 35,000" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
+                                <TextBlock Text="{Binding TodayEstimationLoss}" FontSize="22" FontWeight="Bold" Margin="0,5,0,10" Foreground="#1A1A1A"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="▼" Foreground="#F44336" FontWeight="Bold"/>
-                                    <TextBlock Text=" 8.5% Down from yesterday" Foreground="#F44336" FontSize="12" FontWeight="Medium"/>
+                                    <TextBlock Text="▼" Foreground="{StaticResource RedDanger}" FontWeight="Bold"/>
+                                    <TextBlock Text=" 8.5% Down from yesterday" Foreground="{StaticResource RedDanger}" FontSize="12" FontWeight="Medium"/>
                                 </StackPanel>
                             </StackPanel>
 
                             <Border Grid.Column="1" Width="45" Height="45" Background="#FFEBEE" CornerRadius="22" VerticalAlignment="Top">
-                                <TextBlock Text="&#xE8F2;" FontFamily="Segoe MDL2 Assets" Foreground="#F44336" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <TextBlock Text="&#xE8F2;" FontFamily="Segoe MDL2 Assets" Foreground="{StaticResource RedDanger}" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </Border>
                         </Grid>
                     </Border>
@@ -350,14 +428,33 @@
 
                                 <TextBlock Text="Daily Selling Activity" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A"/>
 
-                                <Border Grid.Column="1" Background="#1E5AAF" BorderBrush="#1648A0" BorderThickness="0" CornerRadius="6" Padding="12,6">
+                                <Border Grid.Column="1" Background="{StaticResource PrimaryBlue}" BorderBrush="#1648A0" BorderThickness="0" CornerRadius="6" Padding="12,6">
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="October" FontSize="13" FontWeight="Medium" Foreground="White"/>
+                                        <TextBlock Text="Last 30 Days" FontSize="13" FontWeight="Medium" Foreground="White"/>
                                         <TextBlock Text="&#xE0E5;" FontFamily="Segoe MDL2 Assets" Margin="6,0,0,0" Foreground="White"/>
                                     </StackPanel>
                                 </Border>
                             </Grid>
-
+                            <lvc:CartesianChart Grid.Row="1" Series="{Binding DailySellingActivitySeries}"
+                                                AnimationsSpeed="0:0:0.5" Hoverable="True"
+                                                Margin="0,10,0,0">
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Title="Date" Labels="{Binding DailySellingActivityLabels}"
+                                              Foreground="#6E6E6E" FontSize="12" FontWeight="SemiBold">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator Step="1" IsEnabled="False"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis Title="Sales Amount (Rs.)"
+                                              Foreground="#6E6E6E" FontSize="12" FontWeight="SemiBold">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="True" StrokeDashArray="2"/>
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
+                            </lvc:CartesianChart>
                         </Grid>
                     </Border>
 
@@ -378,10 +475,16 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Text="Latest Transaction" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                <TextBlock Grid.Row="0" Text="Latest Transactions" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
 
-                                <StackPanel Grid.Row="1">
-                                </StackPanel>
+                                <DataGrid Grid.Row="1" ItemsSource="{Binding LatestTransactions}" Style="{StaticResource DataGridStyle}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Invoice No." Binding="{Binding InvoiceNumber}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Customer" Binding="{Binding CustomerName}" Width="*"/>
+                                        <DataGridTextColumn Header="Amount" Binding="{Binding TotalAmount, StringFormat='C0'}" Width="Auto"/>
+                                        <DataGridTextColumn Header="Date" Binding="{Binding InvoiceDate, StringFormat='d'}" Width="Auto"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </Grid>
                         </Border>
 
@@ -395,10 +498,14 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Text="Popular Product" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                <TextBlock Grid.Row="0" Text="Popular Products" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
 
-                                <StackPanel Grid.Row="1">
-                                </StackPanel>
+                                <DataGrid Grid.Row="1" ItemsSource="{Binding PopularProducts}" Style="{StaticResource DataGridStyle}">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Product Name" Binding="{Binding ProductName}" Width="*"/>
+                                        <DataGridTextColumn Header="Sales Count" Binding="{Binding SalesCount}" Width="Auto"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
                             </Grid>
                         </Border>
 
@@ -412,10 +519,14 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <TextBlock Grid.Row="0" Text="Stock Receipt / Issued" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
+                                <TextBlock Grid.Row="0" Text="Stock Movement Overview" FontSize="18" FontWeight="Bold" Foreground="#1A1A1A" Margin="0,0,0,18"/>
 
-                                <StackPanel Grid.Row="1">
-                                </StackPanel>
+                                <lvc:PieChart Grid.Row="1" Series="{Binding StockMovementSeries}"
+                                              InnerRadius="50" Margin="0,10,0,0">
+                                    <lvc:PieChart.DataTooltip>
+                                        <lvc:DefaultTooltip />
+                                    </lvc:PieChart.DataTooltip>
+                                </lvc:PieChart>
                             </Grid>
                         </Border>
                     </Grid>
