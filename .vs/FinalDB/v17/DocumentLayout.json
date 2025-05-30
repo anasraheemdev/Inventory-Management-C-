@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Inventory-Management-C-\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\purchaserecordwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:purchaserecordwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|d:\\inventory-management-c-\\purchaserecordwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{31A6D47B-4540-4E48-AE22-B17709E479FE}|FinalDB.csproj|solutionrelative:purchaserecordwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,27 +30,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "D:\\Inventory-Management-C-\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "D:\\Inventory-Management-C-\\MainWindow.xaml.cs",
-              "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAKYBAAAAAAAAAAAYwLcBAAAAAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "PurchaseRecordWindow.xaml.cs",
+              "DocumentMoniker": "D:\\Inventory-Management-C-\\PurchaseRecordWindow.xaml.cs",
+              "RelativeDocumentMoniker": "PurchaseRecordWindow.xaml.cs",
+              "ToolTip": "D:\\Inventory-Management-C-\\PurchaseRecordWindow.xaml.cs",
+              "RelativeToolTip": "PurchaseRecordWindow.xaml.cs",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAIwPkBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T00:16:03.321Z",
+              "WhenOpened": "2025-05-30T00:44:00.553Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml",
-              "DocumentMoniker": "D:\\Inventory-Management-C-\\MainWindow.xaml",
-              "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "D:\\Inventory-Management-C-\\MainWindow.xaml",
-              "RelativeToolTip": "MainWindow.xaml",
+              "DocumentIndex": 0,
+              "Title": "PurchaseRecordWindow.xaml",
+              "DocumentMoniker": "D:\\Inventory-Management-C-\\PurchaseRecordWindow.xaml",
+              "RelativeDocumentMoniker": "PurchaseRecordWindow.xaml",
+              "ToolTip": "D:\\Inventory-Management-C-\\PurchaseRecordWindow.xaml",
+              "RelativeToolTip": "PurchaseRecordWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-30T00:04:19.774Z",
+              "WhenOpened": "2025-05-30T00:43:57.055Z",
               "EditorCaption": ""
             }
           ]
