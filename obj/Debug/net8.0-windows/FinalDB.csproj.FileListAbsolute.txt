@@ -182,3 +182,5 @@ D:\Inventory-Management-C-\obj\Debug\net8.0-windows\refint\FinalDB.dll
 D:\Inventory-Management-C-\obj\Debug\net8.0-windows\FinalDB.pdb
 D:\Inventory-Management-C-\obj\Debug\net8.0-windows\FinalDB.genruntimeconfig.cache
 D:\Inventory-Management-C-\obj\Debug\net8.0-windows\ref\FinalDB.dll
+D:\Inventory-Management-C-\bin\Debug\net8.0-windows\LiveCharts.dll
+D:\Inventory-Management-C-\bin\Debug\net8.0-windows\LiveCharts.Wpf.dll
